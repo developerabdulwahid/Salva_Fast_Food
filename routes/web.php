@@ -8,6 +8,7 @@ use App\Http\Controllers\FranchiseController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Dashboard\JobsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +55,8 @@ dd('done');
 });
 // Route::view('email', 'customer_job_email');
 
+//----------------------------------------------  Dashbord Routes-------------------
+
+Route::get('admin',[AuthController::class,'dashboard']);
+
+Route::get('/jobs',[JobsController::class,'index']);
