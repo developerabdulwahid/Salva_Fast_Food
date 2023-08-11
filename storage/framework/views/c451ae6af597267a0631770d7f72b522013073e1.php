@@ -15,17 +15,18 @@
         <ul class="navbar-nav navbar-right">
           
           <li class="dropdown"><a href="#" data-toggle="dropdown"
-              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{asset('dashboard')}}/assets/img/user.png"
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="<?php echo e(asset('dashboard')); ?>/assets/img/user.png"
                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
             <div class="dropdown-menu dropdown-menu-right pullDown">
             
-              <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger" 
+              <a href="<?php echo e(route('logout')); ?>" class="dropdown-item has-icon text-danger" 
               onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="fas fa-sign-out-alt"></i>
-              {{ __('Logout') }}
+              <?php echo e(__('Logout')); ?>
+
               </a>
 
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
+              <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" class="d-none">
+                <?php echo csrf_field(); ?>
               </form>
             </div>
           </li>
@@ -33,3 +34,4 @@
       </nav>
 </div>
 
+<?php /**PATH D:\work\works OutSource\Salva_Fast_Food\resources\views/dashboard/includes/header.blade.php ENDPATH**/ ?>

@@ -8,6 +8,7 @@ use App\Http\Controllers\FranchiseController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobsController;
 
 /*
@@ -56,11 +57,16 @@ dd('done');
 // Route::view('email', 'customer_job_email');
 
 //----------------------------------------------  Dashbord Routes-------------------
-
-Route::get('admin',[AuthController::class,'dashboard']);
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/admin',[DashboardController::class,'dashboard'])->name('admin');
 
 Route::get('/admin/jobs',[JobsController::class,'index'])->name('jobs');
 Route::get('/create-job',[JobsController::class,'create'])->name('new-job');
 Route::post('/create-job',[JobsController::class,'store'])->name('new-job');
 Route::get('/job-detail/{id}',[JobsController::class,'detail'])->name('job-detail');
 Route::get('/delete-job/{id}',[JobsController::class,'destroy'])->name('delete-job');
+// Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
