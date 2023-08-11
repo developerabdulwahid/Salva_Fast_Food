@@ -14,7 +14,7 @@
               <a href="#" class="menu-toggle nav-link has-dropdown"><i
                   data-feather="briefcase"></i><span>Careers</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="widget-chart.html">Jobs</a></li>
+                <li><a class="nav-link" href="{{route('jobs')}}">Jobs</a></li>
                 <li><a class="nav-link" href="widget-data.html">Applications</a></li>
               </ul>
             </li>

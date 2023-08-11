@@ -1,5 +1,10 @@
-<x-app-layout>
-    @section('title', 'Careers')
+<?php if (isset($component)) { $__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\AppLayout::class, []); ?>
+<?php $component->withName('app-layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+    <?php $__env->startSection('title', 'Careers'); ?>
     <style>
         .career .thumbnail-classic-icon {
             color: #f08113;
@@ -68,16 +73,16 @@
         }
     </style>
     <section class="section banner">
-        <div class="bg fix layer" style="background-image: url({{ asset('images/3.jpg') }})"></div>
+        <div class="bg fix layer" style="background-image: url(<?php echo e(asset('images/3.jpg')); ?>)"></div>
         <div class="banner-text">
             <h1>Careers</h1>
-            <img src="{{ asset('images/title_separate_line.png') }}" alt="" />
+            <img src="<?php echo e(asset('images/title_separate_line.png')); ?>" alt="" />
             <p></p>
         </div>
         <div class="content-wrap">
-            {{-- <i class="icon material-icons">thumb_up</i> --}}
+            
             <!-- <button class="btn" id="apply-now" style="background-color:#f08113">Apply Now</button> -->
-            @if (Session::has('success'))
+            <?php if(Session::has('success')): ?>
             <script>
                 $(function(){
                     toastr.options = {
@@ -96,18 +101,10 @@
                         "showMethod": "show",
                         "hideMethod": "hide"
                     };
-                    toastr.success('{{ Session::get('success') }} ' );
+                    toastr.success('<?php echo e(Session::get('success')); ?> ' );
                 })
             </script>
-            @endif {{--
-            <div class="content-text" style="padding: 5rem; background-color: #000;">
-                <p style="max-width: 85rem; margin: auto; font-size: 1.6rem; text-align: center; line-height: 3.2rem; color: #fff;">
-                    At Salva Fast Food, we’re proud to employ great people who are passionate about their jobs. But they’re all different. Some want to improve their prospects. Others want a job that fits round their family life. And some
-                    just want to earn a bit of extra cash working with good, friendly people at a place where they can grow.&nbsp;Everyone who works here wants and needs different things.&nbsp;And no matter who you are, what you need and
-                    where you’re going, Salva Fast Food can be a part of it.
-                </p>
-            </div>
-            --}}
+            <?php endif; ?> 
             <div class="container career">
                 <div class="row row-50 justify-content-sm-center">
                     <div class="col-sm-12">
@@ -144,8 +141,7 @@
                                 <div class="unit-left">
                                     <a href="#" class="thumbnail-classic-icon" id="kitchen-supervisor"
                                         data-job-title="Kitchen Supervisor">
-                                        {{-- <a href="#" class="thumbnail-classic-icon" data-toggle="modal" data-target="#jobModal"
-                    data-job-title="Shift Supervisor"> --}}
+                                        
                                         <i class="material-icons">restaurant</i>
                                     </a>
                                 </div>
@@ -160,8 +156,7 @@
                                 <div class="unit-left">
                                     <a href="#" class="thumbnail-classic-icon" id="front-house"
                                         data-job-title="Front of House (Service)">
-                                        {{-- <a href="#" class="thumbnail-classic-icon" data-toggle="modal" data-target="#jobModal"
-                    data-job-title="Front of House (Service)"> --}}
+                                        
                                         <i class="material-icons">face</i>
                                     </a>
                                 </div>
@@ -191,7 +186,7 @@
                             <!--     <div class="thumbnail-classic unit flex-column col-xs-12 col">
                                 <div class="unit-left">
                                     <a href="#" class="thumbnail-classic-icon" id="apprentice">
-                                        {{-- <a href="https://remit.co.uk/why-become-an-apprentice/" class="thumbnail-classic-icon" target="_blank"> --}}
+                                        
                                         <i class="material-icons">person</i>
                                     </a>
                                 </div>
@@ -205,12 +200,7 @@
                         </div>
                     </div>
                 </div>
-                {{--
-                <p class="job-info">
-                    Do you have what it takes to work for one of the fastest-growing restaurant brands. The opportunity is here. Salva Fast Kebab is changing the perception of the kebab world. Kebabs Done Right. With industry-leading levels
-                    of service, exceptional food and an unforgettable experience for our guests.
-                </p>
-                --}}
+                
                 <p class="job-info">
                     At Salva Fast Food, we’re proud to employ great people who are passionate about their jobs. But they’re all different. Some want to improve their prospects. Others want a job that fits round their family life. And some
                     just want to earn a bit of extra cash working with good, friendly people at a place where they can grow.&nbsp;Everyone who works here wants and needs different things.&nbsp;And no matter who you are, what you need and
@@ -229,227 +219,7 @@
             </div>
         </div>
     </section>
-    {{--
-    <section class="section text-center novi-bg-img p-0">
-        <div class="container-fluid row-50 p-0 m-0">
-            <!-- Isotope Content-->
-            <div class="isotope" data-isotope-layout="masonry">
-                <div class="row row-condensed row-no-gutter">
-                    <div class="col-12 col-md-6 col-lg-7 isotope-item">
-                        <a class="gallery-item gallery-item-fullwidth" href="#" data-toggle="modal" data-target="#jobModal" data-job-title="Store Manager">
-                            <div class="gallery-item-image">
-                                <figure>
-                                    <img src="{{ asset('images/cheff-img1.jpg') }}" alt="" class="img-fluid" />
-                                </figure>
-                                <div class="caption">
-                                    <p class="caption-title">Store Manager</p>
-                                    <p class="caption-text"></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-5 isotope-item">
-                        <a class="gallery-item gallery-item-fullwidth" href="#" data-toggle="modal" data-target="#jobModal" data-job-title="Kitchen Supervisor">
-                            <div class="gallery-item-image">
-                                <figure>
-                                    <img src="{{ asset('images/cheff-img2.jpg') }}" alt="" class="img-fluid" />
-                                </figure>
-                                <div class="caption">
-                                    <p class="caption-title">Kitchen Supervisor</p>
-                                    <p class="caption-text"></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-5 isotope-item">
-                        <a class="gallery-item gallery-item-fullwidth" href="#" data-toggle="modal" data-target="#jobModal" data-job-title="Shift Supervisor">
-                            <div class="gallery-item-image">
-                                <figure>
-                                    <img src="{{ asset('images/cheff-img3.jpg') }}" alt="" class="img-fluid" />
-                                </figure>
-                                <div class="caption">
-                                    <p class="caption-title">Shift Supervisor</p>
-                                    <p class="caption-text"></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-7 isotope-item">
-                        <a class="gallery-item gallery-item-fullwidth" href="#" data-toggle="modal" data-target="#jobModal" data-job-title="Front of House team member">
-                            <div class="gallery-item-image">
-                                <figure>
-                                    <img src="{{ asset('images/cheff-img4.jpg') }}" alt="" class="img-fluid" />
-                                </figure>
-                                <div class="caption">
-                                    <p class="caption-title">Back of House kitchen</p>
-                                    <p class="caption-text"></p>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    --}} {{--
-    <div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="jobModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1>Career</h1>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <form class="job-form" method="POST" id="job-form" action="#">
-                            <div>
-                                <h3>Job Details</h3>
-                                <div>
-                                    <h2>Job Details</h2>
-                                    <div class="blog-heading">
-                                        <h5>Here is what you need:</h5>
-                                        <p><br /></p>
-                                        <ul type="disc">
-                                            <li>Operationally focused on implementing brand standards and policies</li>
-                                            <li>Consistently deliver industry-leading guest service</li>
-                                            <li>Experience with previous openings would be ideal but is not essential</li>
-                                            <li>Ensure store operational requirements by following brand standards, scheduling and assigning employees</li>
-                                            <li>Comply with all requirements of Food Safety and Health and Hygiene standards</li>
-                                            <li>Maintain awareness of market trends in the hospitality industry, understanding forthcoming guest initiatives and monitoring what local competitors are doing</li>
-                                            <li>Understand P&amp;L, budgets and managing payroll</li>
-                                            <li>Manage stock levels and availability</li>
-                                            <li>Manage all controllable costs to keep operations profitable</li>
-                                            <li>Understand weekly sales information</li>
-                                            <li>Maintain operations by coordinating and enforcing personnel policies and procedures in line with GDK brand standards.</li>
-                                            <li>Provide excellent management guidance to your team including training, development and leadership</li>
-                                            <li>Maintain a secure, safe and healthy environment for your team and your guests</li>
-                                            <li>Maintain store team member loyalty by coaching, developing and disciplining employees were necessary</li>
-                                            <li>Provide training to improve all team members and utilise cross-training methods to maintain productivity and create an environment where your team can grow their knowledge</li>
-                                            <li>Update colleagues on business performance, new initiatives and any issues that will enhance performance</li>
-                                            <li>The guest first in everything we do</li>
-                                            <li>Understand your guest and respond to guest complaints and comments</li>
-                                            <li>Identify current and future guest requirements by establishing rapport with potential and actual guests and training others in a position to understand service requirements</li>
-                                            <li>The guest first in everything we do</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h3>Job Apply</h3>
-                                <div>
-                                    <h2>Job Apply</h2>
-                                    <div>
-                                        <div class="container-fluid apply-job">
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <div class="input-field-wrap">
-                                                        <input type="text" class="input-field" placeholder="Your Name *" name="fullname" required="" />
-                                                        <div class="focus"></div>
-                                                    </div>
-                                                    <div class="empty-sm-20 empty-xs-20"></div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <div class="input-field-wrap">
-                                                        <input type="email" class="input-field" placeholder="Your Email *" name="email" required="" />
-                                                        <div class="focus"></div>
-                                                    </div>
-                                                    <div class="empty-sm-20 empty-xs-20"></div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <div class="input-field-wrap">
-                                                        <input type="email" class="input-field" placeholder="Repeat Email *" name="re-email" required="" />
-                                                        <div class="focus"></div>
-                                                    </div>
-                                                    <div class="empty-sm-20 empty-xs-20"></div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <div class="form-select input-field-wrap">
-                                                        <select name="store" id="store" class="input-field">
-                                                            <option value="">Select Store</option>
-                                                            <option value="Burnley">Burnley</option>
-                                                        </select>
-                                                        <div class="focus"></div>
-                                                    </div>
-                                                    <div class="empty-sm-20 empty-xs-20"></div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <div class="form-select input-field-wrap">
-                                                        <select name="position" id="position" class="input-field">
-                                                            <option value="">Please Select</option>
-                                                            <option value="Store Manager">
-                                                                Store Manager
-                                                            </option>
-                                                            <option value="Shift supervisor ">
-                                                                Shift supervisor
-                                                            </option>
-                                                            <option value="Kitchen supervisor ">
-                                                                Kitchen supervisor
-                                                            </option>
-                                                            <option value="Front of House (Service)">
-                                                                Front of House (Service)
-                                                            </option>
-                                                            <option value="Back of House kitchen">
-                                                                Back of House kitchen
-                                                            </option>
-                                                        </select>
-                                                        <div class="focus"></div>
-                                                    </div>
-                                                    <div class="empty-sm-20 empty-xs-20"></div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <div class="form-select input-field-wrap">
-                                                        <select name="time" id="time" class="input-field">
-                                                            <option value="">Full/Part Time</option>
-                                                            <option value="Full Time">Full Time</option>
-                                                            <option value="Part Time">Part Time</option>
-                                                        </select>
-                                                        <div class="focus"></div>
-                                                    </div>
-                                                    <div class="empty-sm-20 empty-xs-20"></div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <label for="">Would you like to upload your CV now?</label>
-                                                    <div class="radio-boxes">
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-                                                            <label class="form-check-label" for="inlineRadio1">Yes</label>
-                                                        </div>
-                                                        <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
-                                                            <label class="form-check-label" for="inlineRadio2">No, i'll upload later </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div id="cvUploadDiv">
-                                                    <h3>Upload your CV in Word or PDF format</h3>
-                                                    <div class="f-upload-container d-flex">
-                                                        <span id="filename">Select your file</span>
-                                                        <label for="file-upload">
-                                                            Browse
-                                                            <input
-                                                                type="file"
-                                                                id="file-upload"
-                                                                name="cvFile"
-                                                                accept=".doc,.docx,.pdf,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                                            />
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <div class="input-field-wrap">
-                                                        <textarea placeholder="Tell us about yourself and any work experience you’ve had previously *" class="input-field" name="content" required=""></textarea>
-                                                        <div class="focus"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    --}}
+     
     <div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="jobModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -464,36 +234,7 @@
                                 Job Details
                             </h2>
                             <div class="blog-heading" id="content">
-                                {{--
-                                <h5 style="font-weight: 700; font-size: 1.4rem; color: #636363;">Here is what you need:</h5>
-                                <p style="font-size: 1.5rem; color: #887878; font-weight: 400; line-height: 1.55;">
-                                    We are looking for a reliable delivery driver who is concerned with customer satisfaction and delivering food in a safe, timely manner. The delivery driver will pick up and drop off food to customers
-                                    while adhering to assigned routes and time schedules. You should be willing to work as a delivery driver to ensure customers receive their food in time.<br />
-                                </p>
-                                <h5 style="font-weight: 700; font-size: 1.4rem; color: #636363;">Responsibilities:</h5>
-                                <ul id="job-list" type="disc">
-                                    <li>Operationally focused on implementing brand standards and policies</li>
-                                    <li>Consistently deliver industry-leading guest service</li>
-                                    <li>Experience with previous openings would be ideal but is not essential</li>
-                                    <li>Ensure store operational requirements by following brand standards, scheduling and assigning employees</li>
-                                    <li>Comply with all requirements of Food Safety and Health and Hygiene standards</li>
-                                    <li>Maintain awareness of market trends in the hospitality industry, understanding forthcoming guest initiatives and monitoring what local competitors are doing</li>
-                                    <li>Understand P&amp;L, budgets and managing payroll</li>
-                                    <li>Manage stock levels and availability</li>
-                                    <li>Manage all controllable costs to keep operations profitable</li>
-                                    <li>Understand weekly sales information</li>
-                                    <li>Maintain operations by coordinating and enforcing personnel policies and procedures in line with GDK brand standards.</li>
-                                    <li>Provide excellent management guidance to your team including training, development and leadership</li>
-                                    <li>Maintain a secure, safe and healthy environment for your team and your guests</li>
-                                    <li>Maintain store team member loyalty by coaching, developing and disciplining employees were necessary</li>
-                                    <li>Provide training to improve all team members and utilise cross-training methods to maintain productivity and create an environment where your team can grow their knowledge</li>
-                                    <li>Update colleagues on business performance, new initiatives and any issues that will enhance performance</li>
-                                    <li>The guest first in everything we do</li>
-                                    <li>Understand your guest and respond to guest complaints and comments</li>
-                                    <li>Identify current and future guest requirements by establishing rapport with potential and actual guests and training others in a position to understand service requirements</li>
-                                    <li>The guest first in everything we do</li>
-                                </ul>
-                                --}}
+                                
                             </div>
                         </div>
                     </div>
@@ -510,42 +251,8 @@
                 </div>
                 <div class="modal-body px-5">
                     <div class="container">
-                        <form class="job-form needs-validation" enctype="multipart/form-data" method="POST" id="job-form" action="{{ route('career') }}" novalidate>
-                            @csrf {{--
-                            <div>
-                                <h3>Job Details</h3>
-                                <div>
-                                    <h2>Job Details</h2>
-                                    <div class="blog-heading">
-                                        <h5>Here is what you need:</h5>
-                                        <p><br /></p>
-                                        <ul type="disc">
-                                            <li>Operationally focused on implementing brand standards and policies</li>
-                                            <li>Consistently deliver industry-leading guest service</li>
-                                            <li>Experience with previous openings would be ideal but is not essential</li>
-                                            <li>Ensure store operational requirements by following brand standards, scheduling and assigning employees</li>
-                                            <li>Comply with all requirements of Food Safety and Health and Hygiene standards</li>
-                                            <li>Maintain awareness of market trends in the hospitality industry, understanding forthcoming guest initiatives and monitoring what local competitors are doing</li>
-                                            <li>Understand P&amp;L, budgets and managing payroll</li>
-                                            <li>Manage stock levels and availability</li>
-                                            <li>Manage all controllable costs to keep operations profitable</li>
-                                            <li>Understand weekly sales information</li>
-                                            <li>Maintain operations by coordinating and enforcing personnel policies and procedures in line with GDK brand standards.</li>
-                                            <li>Provide excellent management guidance to your team including training, development and leadership</li>
-                                            <li>Maintain a secure, safe and healthy environment for your team and your guests</li>
-                                            <li>Maintain store team member loyalty by coaching, developing and disciplining employees were necessary</li>
-                                            <li>Provide training to improve all team members and utilise cross-training methods to maintain productivity and create an environment where your team can grow their knowledge</li>
-                                            <li>Update colleagues on business performance, new initiatives and any issues that will enhance performance</li>
-                                            <li>The guest first in everything we do</li>
-                                            <li>Understand your guest and respond to guest complaints and comments</li>
-                                            <li>Identify current and future guest requirements by establishing rapport with potential and actual guests and training others in a position to understand service requirements</li>
-                                            <li>The guest first in everything we do</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <h3>Job Apply</h3>
-                                <div>
-                                    --}}
+                        <form class="job-form needs-validation" enctype="multipart/form-data" method="POST" id="job-form" action="<?php echo e(route('career')); ?>" novalidate>
+                            <?php echo csrf_field(); ?> 
                                     <h2 style="font-size: 30px; margin-bottom: 2rem; color: #000; font-family: 'Fira Sans', sans-serif;">
                                         Job Apply
                                     </h2>
@@ -627,21 +334,13 @@
                                                 <div class="col-xs-12">
                                                     <label for="">Would you like to upload your CV now?</label>
                                                     <div class="radio-boxes">
-                                                        {{--
-                                                        <div class="form-check form-check-inline">
-                                                            --}}
+                                                        
                                                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="yes" required style="font-size: 12px;" />
                                                             <label class="form-check-label" for="inlineRadio1" style="margin-left: 6px; margin-right: 6px; font-size: 14px; color: #464646;">Yes</label>
-                                                            {{--
-                                                        </div>
-                                                        --}} {{--
-                                                        <div class="form-check form-check-inline">
-                                                            --}}
+                                                             
                                                             <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="no" required style="font-size: 12px;" />
                                                             <label class="form-check-label" for="inlineRadio2" style="margin-left: 6px; margin-right: 6px; font-size: 14px; color: #464646;">No, i'll upload later </label>
-                                                            {{--
-                                                        </div>
-                                                        --}}
+                                                            
                                                     </div>
                                                 </div>
                                                 <div id="cvUploadDiv" class="d-none">
@@ -667,7 +366,7 @@
                                                 </div>
                                                 <div class="invalid-feedback d-none d-block" id="image-error">Please select a file.</div>
 
-                                                <div class="g-recaptcha mt-3" data-sitekey="{{ config('app.google_recaptcha_site_key') }}"></div>
+                                                <div class="g-recaptcha mt-3" data-sitekey="<?php echo e(config('app.google_recaptcha_site_key')); ?>"></div>
                                                 <div class="invalid-feedback d-none d-block" id="captcha-error">Please verify you are not a robot.</div>
                                                 <div class="mt-5 d-flex justify-content-center">
                                                     <button class="btn" id="submit" type="submit">Submit</button>
@@ -675,10 +374,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{--
-                                </div>
-                            </div>
-                            --}}
+                                    
                         </form>
                     </div>
                 </div>
@@ -686,14 +382,10 @@
         </div>
     </div>
 
-    @section('scripts')
+    <?php $__env->startSection('scripts'); ?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    {{-- @if (Session::has('message'))
-    <script type="text/javascript">
-        toastr["{{ Session::get('class') }}"]("{{ Session::get('message') }}");
-    </script>
-    @endif --}}
-    <script src="{{ asset('js/jbvalidator.js') }}"></script>
+    
+    <script src="<?php echo e(asset('js/jbvalidator.js')); ?>"></script>
     <script>
         $("#apply-now").on("click", function () {
             $("#jobApplyModal").modal("show");
@@ -905,5 +597,11 @@
             // });
         });
     </script>
-    @endsection
-</x-app-layout>
+    <?php $__env->stopSection(); ?>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da)): ?>
+<?php $component = $__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da; ?>
+<?php unset($__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da); ?>
+<?php endif; ?>
+<?php /**PATH /media/abdulwahid/DATA/Study-Material/Salva_Fast_Food/resources/views/career.blade.php ENDPATH**/ ?>

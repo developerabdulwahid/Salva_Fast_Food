@@ -26,4 +26,6 @@
           </li>
         </ul>
       </nav>
-</div><?php /**PATH /media/abdulwahid/DATA/Study-Material/Salva_Fast_Food/resources/views/dashboard/includes/header.blade.php ENDPATH**/ ?>
+</div>
+
+<?php /**PATH /media/abdulwahid/DATA/Study-Material/Salva_Fast_Food/resources/views/dashboard/includes/header.blade.php ENDPATH**/ ?>

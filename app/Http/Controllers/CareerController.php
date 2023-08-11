@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Session;
+use App\Models\Job;
 
 class CareerController extends Controller
 {
     // Display Careers Page
     public function index() 
     {
-        return view('career');
+        $jobs = Job::get();
+        return view('career',compact('jobs'));
     }
 
     public function send_mail(Request $request) {

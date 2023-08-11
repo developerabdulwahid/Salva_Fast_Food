@@ -8,7 +8,7 @@ use App\Http\Controllers\FranchiseController;
 use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Dashboard\JobsController;
+use App\Http\Controllers\JobsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,4 +59,8 @@ dd('done');
 
 Route::get('admin',[AuthController::class,'dashboard']);
 
-Route::get('/jobs',[JobsController::class,'index']);
+Route::get('/admin/jobs',[JobsController::class,'index'])->name('jobs');
+Route::get('/create-job',[JobsController::class,'create'])->name('new-job');
+Route::post('/create-job',[JobsController::class,'store'])->name('new-job');
+Route::get('/job-detail/{id}',[JobsController::class,'detail'])->name('job-detail');
+Route::get('/delete-job/{id}',[JobsController::class,'destroy'])->name('delete-job');
