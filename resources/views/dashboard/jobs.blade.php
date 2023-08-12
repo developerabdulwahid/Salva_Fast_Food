@@ -18,7 +18,7 @@
                     <div class="alert alert-success text-center">
                         {{Session::get('success')}}
                     </div>
-                @endif   
+                  @endif   
                   <div class="card-body">
                     <div class="table-responsive">
                     

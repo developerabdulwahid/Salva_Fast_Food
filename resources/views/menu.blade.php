@@ -43,7 +43,7 @@
     </div>
     <div class="content-wrap">
       <div class="content-text text-center" style="margin: 5rem;">
-        <a href="/images/menu.pdf" target="_blank" class="menu-btn" style="padding: 15px 25px;
+        <a href="{{ asset(Storage::url($dine->file)) }}" target="_blank" class="menu-btn" style="padding: 15px 25px;
     display: inline-block;
     background-color: #f08113;
     color: #fff;
@@ -53,10 +53,12 @@
     -o-transition: opacity .35s ease-out;
     transition: opacity .35s ease-out;">
           <i class="fa fa-file-pdf-o "></i>
-          <span style="margin-left:5px;"> <b> Dine in PDF Menu</b></span>
+          <span style="margin-left:5px;"> <b> {{ $dine->title }}</b></span>
         </a>
-        <p style="max-width: 85rem; margin: auto; font-size: 1.6rem; text-align: left; line-height: 3.2rem;">We pride ourselves in working together to combine great tasting food, made from high quality ingredients with service that our customers know and trust.</p>
-        <p style="max-width: 85rem; margin: auto; font-size: 1.6rem; text-align: left; line-height: 3.2rem;"> <a style="text-decoration: underline; color: #f08113;" href="/Allergen.pdf">Allergen PDF booklet</a></p>
+        
+        <p style="max-width: 85rem; margin: auto; font-size: 1.6rem; text-align: left; line-height: 3.2rem;">{{ $document->content }}.</p>
+        
+        <p style="max-width: 85rem; margin: auto; font-size: 1.6rem; text-align: left; line-height: 3.2rem;"> <a style="text-decoration: underline; color: #f08113;" href="{{ asset(Storage::url($document->file)) }}">{{$document->title}}</a></p>
         
 
       </div>

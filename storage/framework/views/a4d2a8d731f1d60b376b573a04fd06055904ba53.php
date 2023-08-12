@@ -24,8 +24,16 @@
                 <li><a class="nav-link" href="email-inbox.html">Contact Us</a></li>
                 <li><a class="nav-link" href="email-compose.html">Franchise</a></li>
                </ul>
-            </li>            
-            <li><a class="nav-link" href="blank.html"><i data-feather="settings"></i><span>Settings </span></a></li>
+            </li>
+            
+            <li class="dropdown">
+              <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="settings"></i><span>Settings</span></a>
+              <ul class="dropdown-menu">
+                <li><a class="nav-link" href="<?php echo e(route('sliders.index')); ?>">Slider</a></li>
+                <li><a class="nav-link" href="<?php echo e(route('documents.index')); ?>">Menu Documents</a></li>
+                <li><a class="nav-link" href="<?php echo e(route('dineIn.edit', ['id' => 1])); ?>">Dine In</a></li>
+               </ul>
+            </li>  
 
           </ul>
         </aside>
