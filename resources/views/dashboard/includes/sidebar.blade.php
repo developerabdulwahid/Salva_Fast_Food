@@ -22,7 +22,7 @@
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="mail"></i><span>Queries</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="email-inbox.html">Contact Us</a></li>
-                <li><a class="nav-link" href="email-compose.html">Franchise</a></li>
+                <li><a class="nav-link" href="{{ route('franchises.index'); }}">Franchise</a></li>
                </ul>
             </li>
             

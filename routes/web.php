@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminFranchiseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StoryController;
@@ -75,6 +76,7 @@ Route::get('dine_in/{id}', [DineInController::class, 'edit'])->name('dineIn.edit
 Route::post('dine_in/update/{id}', [DineInController::class, 'update'])->name('dineIn.update');
 Route::resource('sliders', SliderController::class);
 Route::resource('documents', MenuDocumentController::class);
+Route::resource('franchises', AdminFranchiseController::class);
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
