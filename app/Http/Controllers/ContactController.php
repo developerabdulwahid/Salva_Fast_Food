@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Lib\ReCaptchaAPI;
+use App\Models\Contact;
 use Session;
 use Mail;
 use Image;
@@ -22,7 +23,8 @@ class ContactController extends Controller
         $imageTwo = "";
         $imageThreeName = "";
         $data = $request->all();
-        if($data["select_enquiry"] == "complaint"){
+        
+        if($data["enquiry"] == "complaint"){
             if($data["upload_image"]=="yes"){
                 if($request->hasFile("image1")){
                     $image1 = $request->file('image1');
@@ -42,6 +44,12 @@ class ContactController extends Controller
 
             }
         }
+
+        $data['image1'] = $imageOneName;
+        $data['image2'] = $imageTwo;
+        $data['image3'] = $imageThreeName;
+        $contact = Contact::create($data);
+
         $captcha = $data['g-recaptcha-response'];
         $captcha_secret = '6LdCkQIcAAAAAL43Gbc2KmtvnG-f7rN97dkafL-I';
         $verifyCaptcha = ReCaptchaAPI::confirm($captcha_secret, $captcha);
@@ -52,9 +60,9 @@ class ContactController extends Controller
                 'email' => $data['email'],
                 'phone' => $data['phone'],
                 'content' => $data['content'],
-                'enquiry' => $data['select_enquiry'],
+                'enquiry' => $data['enquiry'],
                 // 'country' => $data['country'],
-                'restaurant' => $data['restaurant'],
+                'resturant' => $data['resturant'],
                 'dine_take_delivery' => $data['dine_take_delivery'],
             ), function($message) use ($request, $imageOneName, $imageTwo, $imageThreeName){
                 $message->from('support@salvafastfood.co.uk' , 'SFF Website');

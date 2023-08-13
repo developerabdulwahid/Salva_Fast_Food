@@ -142,20 +142,22 @@
                                     <div class="col-md-6 form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Ever Run</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <input type="text" name="ever_run_options" value="<?php echo e($franchise->ever_run_options); ?>" required class="form-control" />
-                                        <?php if($errors->has('ever_run_options')): ?>
-                                            <span class="text-danger"><?php echo e($errors->first('ever_run_options')); ?></span>
-                                        <?php endif; ?>
+                                            
+                                            <select class="form-control" name="ever_run_options">
+                                                <option value="Yes" <?php if($franchise->ever_run_options == 'Yes'): ?> selected <?php endif; ?> > Yes </option>
+                                                <option value="No" <?php if($franchise->ever_run_options == 'No'): ?> selected <?php endif; ?> > No </option>
+                                            </select>
                                         </div>
                                     </div>
     
                                     <div class="col-md-6 form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Food Experience</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <input type="text" name="food_experience" value="<?php echo e($franchise->food_experience); ?>" required class="form-control" />
-                                        <?php if($errors->has('food_experience')): ?>
-                                            <span class="text-danger"><?php echo e($errors->first('food_experience')); ?></span>
-                                        <?php endif; ?>
+                                            
+                                            <select class="form-control" name="food_experience">
+                                                <option value="Yes" <?php if($franchise->food_experience == 'Yes'): ?> selected <?php endif; ?> > Yes </option>
+                                                <option value="No" <?php if($franchise->food_experience == 'No'): ?> selected <?php endif; ?> > No </option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -164,20 +166,26 @@
                                     <div class="col-md-6 form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">When start</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <input type="text" name="start_options" value="<?php echo e($franchise->start_options); ?>" required class="form-control" />
-                                        <?php if($errors->has('start_options')): ?>
-                                            <span class="text-danger"><?php echo e($errors->first('start_options')); ?></span>
-                                        <?php endif; ?>
+                                            
+                                            <select class="form-control" name="start_options">
+                                                <option value="3 MONTHS" <?php if($franchise->start_options == '3 MONTHS'): ?> selected <?php endif; ?> > 3 MONTHS </option>
+                                                <option value="6 MONTHS" <?php if($franchise->start_options == '6 MONTHS'): ?> selected <?php endif; ?> > 6 MONTHS </option>
+                                                <option value="9 MONTHS" <?php if($franchise->start_options == '9 MONTHS'): ?> selected <?php endif; ?> > 9 MONTHS </option>
+                                                <option value="12 MONTHS" <?php if($franchise->start_options == '12 MONTHS'): ?> selected <?php endif; ?> > 12 MONTHS </option>
+                                            </select>
                                         </div>
                                     </div>
     
                                     <div class="col-md-6 form-group row mb-4">
                                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Envestmen Level</label>
                                         <div class="col-sm-12 col-md-7">
-                                            <input type="text" name="level_of_investment" value="<?php echo e($franchise->level_of_investment); ?>" required class="form-control" />
-                                        <?php if($errors->has('level_of_investment')): ?>
-                                            <span class="text-danger"><?php echo e($errors->first('level_of_investment')); ?></span>
-                                        <?php endif; ?>
+                                            
+                                            <select class="form-control" name="level_of_investment">
+                                                <option value="£50,000 - £70,000" <?php if($franchise->level_of_investment == '£50,000 - £70,000'): ?> selected <?php endif; ?> > £50,000 - £70,000 </option>
+                                                <option value="£70,000 - £100,000" <?php if($franchise->level_of_investment == '£70,000 - £100,000'): ?> selected <?php endif; ?> > £70,000 - £100,000 </option>
+                                                <option value="£100,000 - £150,000" <?php if($franchise->level_of_investment == '£100,000 - £150,000'): ?> selected <?php endif; ?> > £100,000 - £150,000 </option>
+                                                <option value="£500,000+">£150,000+" <?php if($franchise->level_of_investment == '£500,000+">£150,000+'): ?> selected <?php endif; ?> > £500,000+">£150,000+ </option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -185,10 +193,15 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Developement interest</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" name="type_of_development_interest" value="<?php echo e($franchise->type_of_development_interest); ?>" required class="form-control" />
-                                    <?php if($errors->has('type_of_development_interest')): ?>
-                                        <span class="text-danger"><?php echo e($errors->first('type_of_development_interest')); ?></span>
-                                    <?php endif; ?>
+                                        
+                                        <select class="form-control" name="type_of_development_interest">
+                                            <option value="Country Master Franchise (ability to sub-franchise to others)" 
+                                            <?php if($franchise->type_of_development_interest == 'Country Master Franchise (ability to sub-franchise to others)'): ?> selected <?php endif; ?> > Country Master Franchise (ability to sub-franchise to others) </option>
+                                            <option value="Regional Development (developing a region)" 
+                                            <?php if($franchise->type_of_development_interest == 'Regional Development (developing a region)'): ?> selected <?php endif; ?> > Regional Development (developing a region) </option>
+                                            <option value="Multi Site Development (min 3 store clusters)" 
+                                            <?php if($franchise->type_of_development_interest == 'Multi Site Development (min 3 store clusters)'): ?> selected <?php endif; ?> > Multi Site Development (min 3 store clusters) </option>
+                                        </select>
                                     </div>
                                 </div>
 

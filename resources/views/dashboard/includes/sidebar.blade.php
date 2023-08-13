@@ -21,7 +21,7 @@
             <li class="dropdown">
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="mail"></i><span>Queries</span></a>
               <ul class="dropdown-menu">
-                <li><a class="nav-link" href="email-inbox.html">Contact Us</a></li>
+                <li><a class="nav-link" href="{{ route('contacts.index'); }}">Contact Us</a></li>
                 <li><a class="nav-link" href="{{ route('franchises.index'); }}">Franchise</a></li>
                </ul>
             </li>
@@ -30,8 +30,8 @@
               <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="settings"></i><span>Settings</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{ route('sliders.index'); }}">Slider</a></li>
-                <li><a class="nav-link" href="{{ route('documents.index'); }}">Menu Documents</a></li>
-                <li><a class="nav-link" href="{{ route('dineIn.edit', ['id' => 1]); }}">Dine In</a></li>
+                <li><a class="nav-link" href="{{ route('documents.index'); }}">Menu Document</a></li>
+                <li><a class="nav-link" href="{{ route('dineIn.edit', ['id' => 1]); }}">Dine In Document</a></li>
                </ul>
             </li>  
 

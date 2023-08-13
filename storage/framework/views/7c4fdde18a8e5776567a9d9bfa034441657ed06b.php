@@ -169,19 +169,19 @@
                                     <label for="">What would you like to contact us about today?</label>
                                     <div class="radio-boxes">
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="select_enquiry"
+                                            <input class="form-check-input" type="radio" name="enquiry"
                                                 id="inlineRadio1" value="compliment" />
                                             <label class="form-check-label" for="inlineRadio1">Compliment</label>
                                         </div>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="select_enquiry"
+                                            <input class="form-check-input" type="radio" name="enquiry"
                                                 id="inlineRadio2" value="complaint" />
                                             <label class="form-check-label" for="inlineRadio2">Complaint
                                             </label>
                                         </div>
                                         
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="select_enquiry"
+                                            <input class="form-check-input" type="radio" name="enquiry"
                                                 id="inlineRadio4" value="General Enquiry" checked />
                                             <label class="form-check-label" for="inlineRadio4">General Enquiry
                                             </label>
@@ -345,7 +345,7 @@
             var number = iti.getNumber();
             $('#phone_with_cc').val(number);
           });
-          $("input[name='select_enquiry']").change(function() {
+          $("input[name='enquiry']").change(function() {
             $('.common-display').addClass('d-none');
             $('.' + $(this).val()).removeClass('d-none');
             $('.common-required').removeAttr('required');
