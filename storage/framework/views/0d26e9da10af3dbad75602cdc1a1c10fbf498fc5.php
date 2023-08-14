@@ -507,7 +507,21 @@
 
                 <div class="carousel-inner">
 
-                    <div class="carousel-item ">
+                    <?php
+                        $counter = 1;
+                    ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $slider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <div class="carousel-item  <?php if($counter == 1): ?> active <?php endif; ?>">
+                        <img src="<?php echo e(asset(Storage::url($slider->image))); ?>" id="sliderimg" class="carousel-image d-block w-100" alt="Bites & Smile">
+                        <div class="carousel-caption">
+                            <img src="<?php echo e(asset('images/slogan.png' )); ?>"/>
+                        </div>
+                    </div>
+                    <?php
+                        $counter++;
+                    ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <div class="carousel-item active">
                         <img src="<?php echo e(asset('images/home-1.png' )); ?>" id="sliderimg" class="carousel-image d-block w-100" alt="Bites & Smile">
                         <div class="carousel-caption">
                             <img src="<?php echo e(asset('images/slogan.png' )); ?>"/>
@@ -532,7 +546,7 @@
                     </div>
 
 
-                    <div class="carousel-item active">
+                    <div class="carousel-item">
                         <img src="<?php echo e(asset('images/image_6.png' )); ?>" id="sliderimg" class="carousel-image d-block w-100" alt="...">
                         <div class="carousel-caption">
                             <img src="<?php echo e(asset('images/slogan.png' )); ?>"/>
@@ -547,6 +561,8 @@
 
                         </div>
                     </div>
+
+                    <?php endif; ?>
 
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

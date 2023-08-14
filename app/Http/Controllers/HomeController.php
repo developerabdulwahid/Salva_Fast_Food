@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use MongoDB\Driver\Session;
 use Illuminate\Support\Facades\DB;
@@ -21,8 +22,8 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-       
-        return view('home');
+        $sliders = Slider::all();  
+        return view('home', ['sliders' => $sliders]);
     }
     
     //Privacy Policy Page

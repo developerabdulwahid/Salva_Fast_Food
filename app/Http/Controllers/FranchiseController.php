@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\FranchiseRequest;
 use App\Lib\ReCaptchaAPI;
+use App\Models\Franchise;
 use Mail;
 use Session;
 
@@ -18,6 +19,8 @@ class FranchiseController extends Controller
     
     public function send_mail(Request $request) {
         $data = $request->all();
+
+        $franch = Franchise::create($data);
 
         $captcha = $data['g-recaptcha-response'];
         $captcha_secret = '6LdCkQIcAAAAAL43Gbc2KmtvnG-f7rN97dkafL-I';

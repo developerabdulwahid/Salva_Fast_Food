@@ -19,7 +19,7 @@
                         <?php echo e(Session::get('success')); ?>
 
                     </div>
-                <?php endif; ?>   
+                  <?php endif; ?>   
                   <div class="card-body">
                     <div class="table-responsive">
                     

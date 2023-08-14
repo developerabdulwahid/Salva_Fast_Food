@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminContactController;
+use App\Http\Controllers\AdminFranchiseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StoryController;
@@ -9,7 +11,10 @@ use App\Http\Controllers\CareerController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DineInController;
 use App\Http\Controllers\JobsController;
+use App\Http\Controllers\MenuDocumentController;
+use App\Http\Controllers\SliderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,6 +72,13 @@ Route::get('/create-job',[JobsController::class,'create'])->name('new-job');
 Route::post('/create-job',[JobsController::class,'store'])->name('new-job');
 Route::get('/job-detail/{id}',[JobsController::class,'detail'])->name('job-detail');
 Route::get('/delete-job/{id}',[JobsController::class,'destroy'])->name('delete-job');
+
+Route::get('dine_in/{id}', [DineInController::class, 'edit'])->name('dineIn.edit');
+Route::post('dine_in/update/{id}', [DineInController::class, 'update'])->name('dineIn.update');
+Route::resource('sliders', SliderController::class);
+Route::resource('documents', MenuDocumentController::class);
+Route::resource('franchises', AdminFranchiseController::class);
+Route::resource('contacts', AdminContactController::class);
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

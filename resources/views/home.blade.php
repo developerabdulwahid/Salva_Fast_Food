@@ -502,7 +502,21 @@
 
                 <div class="carousel-inner">
 
-                    <div class="carousel-item ">
+                    @php
+                        $counter = 1;
+                    @endphp
+                    @forelse ($sliders as $slider)
+                    <div class="carousel-item  @if($counter == 1) active @endif">
+                        <img src="{{asset(Storage::url($slider->image))}}" id="sliderimg" class="carousel-image d-block w-100" alt="Bites & Smile">
+                        <div class="carousel-caption">
+                            <img src="{{asset('images/slogan.png' ) }}"/>
+                        </div>
+                    </div>
+                    @php
+                        $counter++;
+                    @endphp
+                    @empty
+                    <div class="carousel-item active">
                         <img src="{{asset('images/home-1.png' ) }}" id="sliderimg" class="carousel-image d-block w-100" alt="Bites & Smile">
                         <div class="carousel-caption">
                             <img src="{{asset('images/slogan.png' ) }}"/>
@@ -527,7 +541,7 @@
                     </div>
 
 
-                    <div class="carousel-item active">
+                    <div class="carousel-item">
                         <img src="{{asset('images/image_6.png' ) }}" id="sliderimg" class="carousel-image d-block w-100" alt="...">
                         <div class="carousel-caption">
                             <img src="{{asset('images/slogan.png' ) }}"/>
@@ -542,6 +556,8 @@
 
                         </div>
                     </div>
+
+                    @endforelse
 
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>

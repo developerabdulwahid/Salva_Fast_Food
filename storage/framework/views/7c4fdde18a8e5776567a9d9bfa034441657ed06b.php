@@ -1,6 +1,11 @@
-<x-app-layout>
-    @section('title', 'Contact Us')
-    <link rel="stylesheet" href="{{ asset('intl-input-tel/css/intlTelInput.css') }}">
+<?php if (isset($component)) { $__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da = $component; } ?>
+<?php $component = $__env->getContainer()->make(App\View\Components\AppLayout::class, []); ?>
+<?php $component->withName('app-layout'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php $component->withAttributes([]); ?>
+    <?php $__env->startSection('title', 'Contact Us'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('intl-input-tel/css/intlTelInput.css')); ?>">
     <style>
         .content-wrap {
             padding: 8rem 2rem 5rem !important;
@@ -111,10 +116,10 @@
     
     <section class="section banner">
         <div class="bg"
-            style="background: url({{ asset('images/1.jpg') }}) center no-repeat; background-size: cover;"></div>
+            style="background: url(<?php echo e(asset('images/1.jpg')); ?>) center no-repeat; background-size: cover;"></div>
         <div class="banner-text">
             <h1>Contact Us</h1>
-            <img src="{{ asset('images/title_separate_line.png') }}" alt="">
+            <img src="<?php echo e(asset('images/title_separate_line.png')); ?>" alt="">
 
         </div>
         <div class="content-wrap">
@@ -123,9 +128,9 @@
                     <div class="col-lg-9 col-md-8 col-sm-12 px-lg-5 px-md-3 text-center contact-us">
                         <h3 style="color:#f08113">Please complete the form below and one of the SFF Team will come back to you</h3>
 
-                        <form action="{{ route('contact') }}" enctype="multipart/form-data" method="post" id="contactForm" class="needs-validation"
+                        <form action="<?php echo e(route('contact')); ?>" enctype="multipart/form-data" method="post" id="contactForm" class="needs-validation"
                             novalidate>
-                            @csrf
+                            <?php echo csrf_field(); ?>
                             <div class="row">
                                 <div class="col-sm-6 col-xs-12">
                                     <div class="input-field-wrap">
@@ -174,12 +179,7 @@
                                             <label class="form-check-label" for="inlineRadio2">Complaint
                                             </label>
                                         </div>
-                                        {{-- <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" name="enquiry" id="inlineRadio3"
-                        value="option3" />
-                      <label class="form-check-label" for="inlineRadio3">Media
-                      </label>
-                    </div> --}}
+                                        
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="enquiry"
                                                 id="inlineRadio4" value="General Enquiry" checked />
@@ -188,22 +188,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="col-xs-12 common-display compliment complaint d-none">
-                  <div class="input-field-wrap">
-                    <select name="country" class="input-field common-required compliment-required complaint-required">
-                      <option value="">Select Country *</option>
-                      <option value="UK">UK</option>
-                      <option value="UAE">UAE</option>
-                      <option value="Sweden">Sweden</option>
-                      <option value="Canada">Canada</option>
-                    </select>
-                    <div class="focus"></div>
-                  </div>
-                  <div class="empty-sm-20 empty-xs-20"></div>
-                </div> --}}
+                                
                                 <div class="col-xs-12 common-display compliment complaint d-none">
                                     <div class="input-field-wrap">
-                                        <select name="resturant"
+                                        <select name="restaurant"
                                             class="input-field common-required compliment-required complaint-required">
                                             <option value="">Select Rasturant Name *</option>
                                             <option value="Burnley">Burnley</option>
@@ -228,17 +216,17 @@
                                 <div class="col-xs-12 common-display complaint d-none mb-3" style="text-align: left;">
                                     <label for="">Would you like to upload any images?</label>
                                     <div class="radio-boxes p-2">
-                                        {{-- <div class="form-check form-check-inline"> --}}
+                                        
                                             <input class="form-check-input common-required complaint-required"
                                                 type="radio" name="upload_image" id="inlineRadio1" value="yes" />
                                             <label class="form-check-label" for="inlineRadio1" style="margin-left: 6px; margin-right: 6px;">Yes</label>
-                                        {{-- </div> --}}
-                                        {{-- <div class="form-check form-check-inline"> --}}
+                                        
+                                        
                                             <input class="form-check-input common-required complaint-required"
                                                 type="radio" name="upload_image" id="inlineRadio2" value="no" />
                                             <label class="form-check-label" for="inlineRadio2" style="margin-left: 6px; margin-right: 6px;">No
                                             </label>
-                                        {{-- </div> --}}
+                                        
                                     </div>
                                 </div>
                                 <div class="col-xs-12 d-none mb-3 common-display" id="cvUploadDiv" style="text-align: left;">
@@ -275,15 +263,15 @@
                                         <input class="form-check-input" type="checkbox" value="" id="privacyChecked" required>
                                         <label class="form-check-label" for="privacyChecked">
                                             By checking this box you confirm that you have read and agree to our <a
-                                                href="{{ route('privacy') }}"
+                                                href="<?php echo e(route('privacy')); ?>"
                                                 class="text-decoration-underline">Privacy Policy</a>
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
                             <div class="empty-sm-60 empty-xs-60"></div>
-                            <div class="g-recaptcha" data-sitekey="{{ (config('app.google_recaptcha_site_key')) }}"></div>
+                            <div class="g-recaptcha" data-sitekey="<?php echo e((config('app.google_recaptcha_site_key'))); ?>"></div>
                             <div class="invalid-feedback d-none d-block" id="captcha-error">Please verify you are not a robot.</div>
                             <div class="text-center">
                                 <div class="page-button style="color:#f08113"">
@@ -292,7 +280,7 @@
                                 </div>
                             </div>
                             <input type="hidden" name="phone_with_cc" id="phone_with_cc">
-                            @if (Session::has('success'))
+                            <?php if(Session::has('success')): ?>
 
                     <script>
                         $(function(){
@@ -312,10 +300,10 @@
                                 "showMethod": "show",
                                 "hideMethod": "hide"
                             };
-                            toastr.success('{{ Session::get('success') }} ' );
+                            toastr.success('<?php echo e(Session::get('success')); ?> ' );
                         })
                     </script>
-                        @endif
+                        <?php endif; ?>
                         </form>
                     </div>
                     <div class="col-lg-3 col-md-4 col-sm-12 px-lg-5 px-md-3 side-content">
@@ -325,30 +313,25 @@
                         <p>Please note: Our Guest Service team will respond to enquiries and complaints Monday- Friday
                             9am-5pm and
                             are closed on public holidays.</p>
-                        {{-- <p>For Halal Certificate please <a href="blog/uk-news/gdk-halal-certificate">click
-                here</a></p> --}}
+                        
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    @section('scripts')
+    <?php $__env->startSection('scripts'); ?>
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-        {{-- @if (Session::has('message'))
-            <script type="text/javascript">
-                toastr["{{ Session::get('class') }}"]("{{ Session::get('message') }}");
-            </script>
-        @endif --}}
-        <script src="{{ asset('intl-input-tel/js/intlTelInput.js') }}"></script>
-        <script src="{{ asset('js/jbvalidator.js') }}"></script>
-        <script src="{{ asset('js/custome/custom_validator.js') }}"></script>
+        
+        <script src="<?php echo e(asset('intl-input-tel/js/intlTelInput.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/jbvalidator.js')); ?>"></script>
+        <script src="<?php echo e(asset('js/custome/custom_validator.js')); ?>"></script>
         <script>
           const input = document.querySelector("#phone");
           let iti = intlTelInput(input, {
             // any initialisation options go here
             separateDialCode: true,
-            utilsScript: "{{ asset('intl-input-tel/js/utils.js') }}",
+            utilsScript: "<?php echo e(asset('intl-input-tel/js/utils.js')); ?>",
             initialCountry: "auto",
             geoIpLookup: function (success, failure) {
               $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
@@ -412,5 +395,11 @@
               } else {}
           });
         </script>
-    @endsection
-</x-app-layout>
+    <?php $__env->stopSection(); ?>
+ <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da)): ?>
+<?php $component = $__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da; ?>
+<?php unset($__componentOriginal8e2ce59650f81721f93fef32250174d77c3531da); ?>
+<?php endif; ?>
+<?php /**PATH D:\work\works OutSource\Salva_Fast_Food\resources\views/contact.blade.php ENDPATH**/ ?>
