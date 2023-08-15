@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\JobApplication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class JobApplicationController extends Controller
 {
@@ -19,6 +20,18 @@ class JobApplicationController extends Controller
         return view('dashboard.applicants.index', ['applicants' => $applicants]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function jobApplicants($id)
+    {
+        Session::put('job_id', $id);
+        $applicants = JobApplication::where('job_id', $id)->get();
+
+        return view('dashboard.applicants.index', ['applicants' => $applicants]);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -84,6 +97,6 @@ class JobApplicationController extends Controller
     {
         $applicant->delete();
 
-        return redirect()->route('applicants.index')->withStatus('success', 'Application deleted successfully');
+        return redirect()->route('job.applicants', ['id' => Session::get('job_id')])->withStatus('success', 'Application deleted successfully');
     }
 }

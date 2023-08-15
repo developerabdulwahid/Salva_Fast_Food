@@ -34,7 +34,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">File</label>
                                 
-                                <a href="{{asset(Storage::url($dine_in->file))}}">{{ $dine_in->title }}</a>
+                                <a class="ml-3" href="{{asset(Storage::url($dine_in->file))}}">{{ $dine_in->title }}</a>
                                 
                                 <div class="col-sm-12 col-md-7">
                                     <div id="image-preview" class="image-preview">

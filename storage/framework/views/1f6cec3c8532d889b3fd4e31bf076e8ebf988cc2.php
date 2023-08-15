@@ -107,7 +107,32 @@
                     toastr.success('<?php echo e(Session::get('success')); ?> ' );
                 })
             </script>
-            <?php endif; ?> 
+            <?php endif; ?>  
+
+            <?php if(Session::has('error')): ?>
+            <script>
+                $(function(){
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "100",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "show",
+                        "hideMethod": "hide"
+                    };
+                    toastr.error('<?php echo e(Session::get('error')); ?> ' );
+                })
+            </script>
+            <?php endif; ?>  
+            
             <div class="container career">
                 <div class="row row-50 justify-content-sm-center">
                     <div class="col-sm-12">
@@ -123,9 +148,8 @@
                                     <div class="thumbnail-classic-caption unit-body text-center">
                                         <h6 class="thumbnail-classic-title"> <?php echo e($job->title); ?> </h6>
                                         
-                                        <span>
-                                            <button class="btn mb-2 job_detail" data-detailId="<?php echo e($job->id); ?>" id="store-manager" data-job-title="Store Manager" style="background-color: #f08113;">See More</button>
-                                        </span>
+                                        <a href="#" class="btn mb-2 job_detail" data-detailId="<?php echo e($job->id); ?>" id="store-manager" data-job-title="Store Manager" style="background-color: #f08113;margin-top: -55px;"> See More</a>
+                                        
 
                                         <span>
                                             <button class="btn apply_user" data-jobId="<?php echo e($job->id); ?>" data-jobCategory="<?php echo e($job->category); ?>" id="apply-now-<?php echo e($job->id); ?>" style="background-color: #f08113;">Apply</button>
@@ -301,57 +325,9 @@
                                                     </div>
                                                     <div class="empty-sm-20 empty-xs-20"></div>
                                                 </div>
-                                                <div class="col-xs-12">
-                                                    <div class="form-select input-field-wrap" id="store-div">
-                                                        <select name="store" id="store" class="input-field">
-                                                            <option value="">Select Store *</option>
-                                                            <option value="Burnley">Burnley</option>
-                                                        </select>
-                                                        <div class="focus"></div>
-                                                    </div>
-                                                    <div class="empty-sm-20 empty-xs-20"></div>
-                                                    <div class="invalid-feedback d-block d-none" style="margin-bottom: 2rem !important;" id="store-error">Please select an item in the list.</div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <div class="form-select input-field-wrap" id="position-div">
-                                                        <select name="position" id="position" class="input-field">
-                                                            <option value="">Please Select *</option>
-                                                            <option value="Store Manager">
-                                                                Store Manager
-                                                            </option>
-                                                            <option value="Delivery Driver">
-                                                                Delivery Driver
-                                                            </option>
-                                                            <option value="Kitchen supervisor ">
-                                                                Kitchen supervisor
-                                                            </option>
-                                                            <option value="Front of House (Service)">
-                                                                Front of House (Service)
-                                                            </option>
-                                                            <option value="Back of House kitchen">
-                                                                Back of House kitchen
-                                                            </option>
-                                                            <option value="Salva’s Apprenticeships">
-                                                                Salva’s Apprenticeships
-                                                            </option>
-                                                        </select>
-                                                        <div class="focus"></div>
-                                                    </div>
-                                                    <div class="empty-sm-20 empty-xs-20"></div>
-                                                    <div class="invalid-feedback d-block d-none" style="margin-bottom: 2rem !important;" id="position-error">Please select an item in the list.</div>
-                                                </div>
-                                                <div class="col-xs-12">
-                                                    <div class="form-select input-field-wrap" id="time-div">
-                                                        <select name="time" id="time" class="input-field">
-                                                            <option value="">Full/Part Time *</option>
-                                                            <option value="Full Time">Full Time</option>
-                                                            <option value="Part Time">Part Time</option>
-                                                        </select>
-                                                        <div class="focus"></div>
-                                                    </div>
-                                                    <div class="empty-sm-20 empty-xs-20"></div>
-                                                    <div class="invalid-feedback d-block d-none" style="margin-bottom: 2rem !important;" id="time-error">Please select an item in the list.</div>
-                                                </div>
+                                                
+                                                
+                                                
                                                 <div class="col-xs-12">
                                                     <label for="">Would you like to upload your CV now?</label>
                                                     <div class="radio-boxes">
@@ -418,26 +394,26 @@
 
             $("#jobApplyModal").modal("show");
 
-            $(".apply_clicked").on("click", function () {
+            // $(".apply_clicked").on("click", function () {
 
-                $.ajax({
-                /* the route pointing to the post function */
-                    url: '/job-applied',
-                    type: 'POST',
-                    /* send the csrf-token and the input to the controller */
-                    data: {
-                        "_token": "<?php echo e(csrf_token()); ?>",
-                        job_id: job_id
-                    },
-                    dataType: 'JSON',
-                    /* remind that 'data' is the response of the AjaxController */
-                    success: function (data) { 
-                        console.log('yes it workekd');
-                        // $(".writeinfo").append(data.msg); 
-                    }
-                });
+            //     $.ajax({
+            //     /* the route pointing to the post function */
+            //         url: '/job-applied',
+            //         type: 'POST',
+            //         /* send the csrf-token and the input to the controller */
+            //         data: {
+            //             "_token": "<?php echo e(csrf_token()); ?>",
+            //             job_id: job_id
+            //         },
+            //         dataType: 'JSON',
+            //         /* remind that 'data' is the response of the AjaxController */
+            //         success: function (data) { 
+            //             console.log('yes it workekd');
+            //             // $(".writeinfo").append(data.msg); 
+            //         }
+            //     });
 
-            });
+            // });
         });
 
         $(".close-modal").on("click", function () {

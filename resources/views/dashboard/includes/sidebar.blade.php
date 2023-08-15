@@ -15,7 +15,7 @@
                   data-feather="briefcase"></i><span>Careers</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="{{route('jobs')}}">Jobs</a></li>
-                <li><a class="nav-link" href="{{ route('applicants.index') }}">Applications</a></li>
+                {{-- <li><a class="nav-link" href="{{ route('applicants.index') }}">Applications</a></li> --}}
               </ul>
             </li>
             <li class="dropdown">

@@ -31,9 +31,6 @@
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Store</th>
-                            <th>Position</th>
-                            <th>Time</th>
                             <th>Requested ON</th>
                             <th>Action</th>
                           </tr>
@@ -47,9 +44,6 @@
                             <td >{{ $row->fullname }}</td>
                             <td >{{ $row->email }}</td>
                             <td >{{ $row->phone }}</td>
-                            <td >{{ $row->store }}</td>
-                            <td >{{ $row->position }}</td>
-                            <td >{{ $row->time }}</td>
                             <td>
                               @php
                               $date = strtotime($row->created_at);

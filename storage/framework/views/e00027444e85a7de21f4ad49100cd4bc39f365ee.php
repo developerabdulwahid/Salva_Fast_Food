@@ -31,9 +31,6 @@
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Store</th>
-                            <th>Position</th>
-                            <th>Time</th>
                             <th>Requested ON</th>
                             <th>Action</th>
                           </tr>
@@ -47,9 +44,6 @@
                             <td ><?php echo e($row->fullname); ?></td>
                             <td ><?php echo e($row->email); ?></td>
                             <td ><?php echo e($row->phone); ?></td>
-                            <td ><?php echo e($row->store); ?></td>
-                            <td ><?php echo e($row->position); ?></td>
-                            <td ><?php echo e($row->time); ?></td>
                             <td>
                               <?php
                               $date = strtotime($row->created_at);

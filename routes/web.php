@@ -76,6 +76,7 @@ Route::post('/create-job',[JobsController::class,'store'])->name('new-job');
 Route::get('/job-detail/{id}',[JobsController::class,'detail'])->name('job-detail');
 Route::get('/delete-job/{id}',[JobsController::class,'destroy'])->name('delete-job');
 
+Route::get('job-applicants/{id}',[JobApplicationController::class,'jobApplicants'])->name('job.applicants');
 Route::resource('applicants', JobApplicationController::class)->only(['index', 'show', 'destroy']);
 
 Route::get('dine_in/{id}', [DineInController::class, 'edit'])->name('dineIn.edit');

@@ -8,7 +8,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Add new slider</h4>
+                            <h4>Menu Document</h4>
                         </div>
                         <div class="card-body">
                             <form action="{{route('documents.update', ['document' => $document->id])}}" method="post" enctype="multipart/form-data">
@@ -39,7 +39,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">File</label>
                                 
-                                <a href="{{asset(Storage::url($document->file))}}">{{ $document->title }}</a>
+                                <a class="ml-3" href="{{asset(Storage::url($document->file))}}">{{ $document->title }}</a>
                                 
                                 <div class="col-sm-12 col-md-7">
                                     <div id="image-preview" class="image-preview">
