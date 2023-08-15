@@ -105,6 +105,9 @@ class JobsController extends Controller
     public function destroy($id)
     {
         $job = Job::findOrFail($id);
+        
+        $job->applications()->delete();
+
         if($job->delete()){
             return redirect()->route('jobs')->with('success','Job deleted successfully!');
         }

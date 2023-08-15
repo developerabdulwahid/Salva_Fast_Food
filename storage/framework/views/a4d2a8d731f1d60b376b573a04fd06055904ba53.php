@@ -15,7 +15,7 @@
                   data-feather="briefcase"></i><span>Careers</span></a>
               <ul class="dropdown-menu">
                 <li><a class="nav-link" href="<?php echo e(route('jobs')); ?>">Jobs</a></li>
-                <li><a class="nav-link" href="<?php echo e(route('applicants.index')); ?>">Applications</a></li>
+                
               </ul>
             </li>
             <li class="dropdown">

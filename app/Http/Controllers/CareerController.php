@@ -27,7 +27,7 @@ class CareerController extends Controller
         $captcha = $data['g-recaptcha-response'];
         $captcha_secret = '6LdCkQIcAAAAAL43Gbc2KmtvnG-f7rN97dkafL-I';
         $verifyCaptcha = ReCaptchaAPI::confirm($captcha_secret, $captcha);
-        if($verifyCaptcha) {
+        // if($verifyCaptcha) {
             if ($request->hasFile('resume')) {
                 $file =  $request->file('resume');
                 $fileName = time().'_'.$file->getClientOriginalName();    
@@ -62,7 +62,10 @@ class CareerController extends Controller
                 $message->from('support@salvafastfood.com', 'Salva Fast Food');
                 $message->to($request->email, $request->fullname)->subject('Thank you for applying for a job at SFF');
             });
-        }
+        // } else {
+        //     Session::flash("error", "Your Google recapcha is incorrect or failed please try again.");
+        //     return redirect()->route('career');
+        // }
 
         if(is_file(public_path('/cvs/'.$fileName))){
             unlink(public_path('/cvs/'.$fileName));

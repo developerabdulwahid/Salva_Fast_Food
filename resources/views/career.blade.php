@@ -102,7 +102,32 @@
                     toastr.success('{{ Session::get('success') }} ' );
                 })
             </script>
-            @endif {{--
+            @endif  
+
+            @if (Session::has('error'))
+            <script>
+                $(function(){
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "preventDuplicates": true,
+                        "onclick": null,
+                        "showDuration": "100",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "show",
+                        "hideMethod": "hide"
+                    };
+                    toastr.error('{{ Session::get('error') }} ' );
+                })
+            </script>
+            @endif  
+            {{--
             <div class="content-text" style="padding: 5rem; background-color: #000;">
                 <p style="max-width: 85rem; margin: auto; font-size: 1.6rem; text-align: center; line-height: 3.2rem; color: #fff;">
                     At Salva Fast Food, we’re proud to employ great people who are passionate about their jobs. But they’re all different. Some want to improve their prospects. Others want a job that fits round their family life. And some
@@ -128,9 +153,10 @@
                                     <div class="thumbnail-classic-caption unit-body text-center">
                                         <h6 class="thumbnail-classic-title"> {{ $job->title }} </h6>
                                         
-                                        <span>
+                                        <a href="#" class="btn mb-2 job_detail" data-detailId="{{ $job->id }}" id="store-manager" data-job-title="Store Manager" style="background-color: #f08113;margin-top: -55px;"> See More</a>
+                                        {{-- <span>
                                             <button class="btn mb-2 job_detail" data-detailId="{{ $job->id }}" id="store-manager" data-job-title="Store Manager" style="background-color: #f08113;">See More</button>
-                                        </span>
+                                        </span> --}}
 
                                         <span>
                                             <button class="btn apply_user" data-jobId="{{ $job->id }}" data-jobCategory="{{ $job->category }}" id="apply-now-{{ $job->id }}" style="background-color: #f08113;">Apply</button>
@@ -596,7 +622,7 @@
                                                     </div>
                                                     <div class="empty-sm-20 empty-xs-20"></div>
                                                 </div>
-                                                <div class="col-xs-12">
+                                                {{-- <div class="col-xs-12">
                                                     <div class="form-select input-field-wrap" id="store-div">
                                                         <select name="store" id="store" class="input-field">
                                                             <option value="">Select Store *</option>
@@ -606,8 +632,8 @@
                                                     </div>
                                                     <div class="empty-sm-20 empty-xs-20"></div>
                                                     <div class="invalid-feedback d-block d-none" style="margin-bottom: 2rem !important;" id="store-error">Please select an item in the list.</div>
-                                                </div>
-                                                <div class="col-xs-12">
+                                                </div> --}}
+                                                {{-- <div class="col-xs-12">
                                                     <div class="form-select input-field-wrap" id="position-div">
                                                         <select name="position" id="position" class="input-field">
                                                             <option value="">Please Select *</option>
@@ -634,8 +660,8 @@
                                                     </div>
                                                     <div class="empty-sm-20 empty-xs-20"></div>
                                                     <div class="invalid-feedback d-block d-none" style="margin-bottom: 2rem !important;" id="position-error">Please select an item in the list.</div>
-                                                </div>
-                                                <div class="col-xs-12">
+                                                </div> --}}
+                                                {{-- <div class="col-xs-12">
                                                     <div class="form-select input-field-wrap" id="time-div">
                                                         <select name="time" id="time" class="input-field">
                                                             <option value="">Full/Part Time *</option>
@@ -646,7 +672,7 @@
                                                     </div>
                                                     <div class="empty-sm-20 empty-xs-20"></div>
                                                     <div class="invalid-feedback d-block d-none" style="margin-bottom: 2rem !important;" id="time-error">Please select an item in the list.</div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-xs-12">
                                                     <label for="">Would you like to upload your CV now?</label>
                                                     <div class="radio-boxes">
@@ -728,26 +754,26 @@
 
             $("#jobApplyModal").modal("show");
 
-            $(".apply_clicked").on("click", function () {
+            // $(".apply_clicked").on("click", function () {
 
-                $.ajax({
-                /* the route pointing to the post function */
-                    url: '/job-applied',
-                    type: 'POST',
-                    /* send the csrf-token and the input to the controller */
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        job_id: job_id
-                    },
-                    dataType: 'JSON',
-                    /* remind that 'data' is the response of the AjaxController */
-                    success: function (data) { 
-                        console.log('yes it workekd');
-                        // $(".writeinfo").append(data.msg); 
-                    }
-                });
+            //     $.ajax({
+            //     /* the route pointing to the post function */
+            //         url: '/job-applied',
+            //         type: 'POST',
+            //         /* send the csrf-token and the input to the controller */
+            //         data: {
+            //             "_token": "{{ csrf_token() }}",
+            //             job_id: job_id
+            //         },
+            //         dataType: 'JSON',
+            //         /* remind that 'data' is the response of the AjaxController */
+            //         success: function (data) { 
+            //             console.log('yes it workekd');
+            //             // $(".writeinfo").append(data.msg); 
+            //         }
+            //     });
 
-            });
+            // });
         });
 
         $(".close-modal").on("click", function () {

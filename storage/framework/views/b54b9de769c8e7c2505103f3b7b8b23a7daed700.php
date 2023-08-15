@@ -67,10 +67,12 @@
                             <td>
                             
                             <a href="<?php echo e(route('job-detail',['id'=>$job->id])); ?>" class="btn btn-icon btn-sm btn-info"><i class="fas fa-eye"></i></a>
+
+                            <a href="<?php echo e(route('job.applicants', ['id' => $job->id])); ?>" class="btn btn-icon btn-sm btn-info"><i class="fa fa-users" aria-hidden="true"></i></a>
                             
                             <!-- <a href="#" class="btn btn-icon btn-sm btn-warning"><i class="fas fa-edit"></i></a> -->
 
-                            <a href="<?php echo e(route('delete-job',['id'=>$job->id])); ?>" class="btn btn-icon btn-sm btn-danger"><i class="fas fa-trash"></i></a>
+                            <a onclick="return confirm('Are you sure to delete');" href="<?php echo e(route('delete-job',['id'=>$job->id])); ?>" class="btn btn-icon btn-sm btn-danger"><i class="fas fa-trash"></i></a>
                             </td>
                           </tr>
                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
