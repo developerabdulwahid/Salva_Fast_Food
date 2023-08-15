@@ -66,6 +66,9 @@
             text-align: left !important;
             font-size: 1.25em !important;
         }
+        .card-img-top {
+            border-radius: 40%;
+        }
     </style>
     <section class="section banner">
         <div class="bg fix layer" style="background-image: url({{ asset('images/3.jpg') }})"></div>
@@ -112,20 +115,30 @@
                 <div class="row row-50 justify-content-sm-center">
                     <div class="col-sm-12">
                         <div class="jobs row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-6">
-                            <div class="thumbnail-classic unit flex-column col-xs-12 col">
-                                <div class="unit-left">
-                                    <a href="#" class="thumbnail-classic-icon" id="store-manager" data-job-title="Store Manager">
-                                        <i class="material-icons">volunteer_activism</i>
-                                    </a>
+                            
+                            @foreach ($jobs as $job)
+                                <div class="thumbnail-classic unit flex-column col-xs-12 col">
+                                    <div class="unit-left">
+                                        {{-- <a href="#" class="thumbnail-classic-icon" id="" data-job-title="">
+                                            <i class="material-icons">volunteer_activism</i>
+                                        </a> --}}
+                                        {{-- <img src="src="{{ asset('jobs/').'/'.$job->file }}" class="card-img-top"  alt="{{ $job->title }}"> --}}
+                                        <img src="{{asset('jobs/').'/'.$job->file}}" class="card-img-top" height="120" alt="{{ $job->title }}">
+                                    </div>
+                                    <div class="thumbnail-classic-caption unit-body text-center">
+                                        <h6 class="thumbnail-classic-title"> {{ $job->title }} </h6>
+                                        
+                                        <span>
+                                            <button class="btn mb-2 job_detail" data-detailId="{{ $job->id }}" id="store-manager" data-job-title="Store Manager" style="background-color: #f08113;">See More</button>
+                                        </span>
+
+                                        <span>
+                                            <button class="btn apply_user" data-jobId="{{ $job->id }}" data-jobCategory="{{ $job->category }}" id="apply-now-{{ $job->id }}" style="background-color: #f08113;">Apply</button>
+                                        </span>
+                                        <hr class="divider divider-default divider-sm" />
+                                    </div>
                                 </div>
-                                <div class="thumbnail-classic-caption unit-body text-center">
-                                    <h6 class="thumbnail-classic-title">Store Manager</h6>
-                                    <span>
-                                        <button class="btn" id="apply-now" style="background-color: #f08113;">Apply</button>
-                                    </span>
-                                    <hr class="divider divider-default divider-sm" />
-                                </div>
-                            </div>
+                            @endforeach
 
                             <!--   <div class="thumbnail-classic unit flex-column col-xs-12 col">
                                 <div class="unit-left">
@@ -426,7 +439,7 @@
                                                             <input
                                                                 type="file"
                                                                 id="file-upload"
-                                                                name="cvFile"
+                                                                name="resume"
                                                                 accept=".doc,.docx,.pdf,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                                                             />
                                                         </label>
@@ -463,7 +476,7 @@
                             <h2 style="font-size: 30px; margin-bottom: 2rem; color: #000; font-family: 'Fira Sans', sans-serif;">
                                 Job Details
                             </h2>
-                            <div class="blog-heading" id="content">
+                            <div class="blog-heading" id="content" style="color: #000">
                                 {{--
                                 <h5 style="font-weight: 700; font-size: 1.4rem; color: #636363;">Here is what you need:</h5>
                                 <p style="font-size: 1.5rem; color: #887878; font-weight: 400; line-height: 1.55;">
@@ -555,6 +568,16 @@
                                                 <div class="col-xs-12">
                                                     <div class="input-field-wrap">
                                                         <input type="text" class="input-field" placeholder="Your Name *" name="fullname" required="" />
+                                                        <div class="focus"></div>
+                                                    </div>
+                                                    <div class="empty-sm-20 empty-xs-20"></div>
+                                                </div>
+                                                <div class="col-xs-12">
+                                                    <div class="input-field-wrap">
+                                                        <input type="text" class="input-field" placeholder="Your Phone *" name="phone" required="" />
+                                                        <input type="hidden" class="input-field" placeholder="Your Phone *" id="applied_job_id" name="job_id" required="" />
+                                                        <input type="hidden" class="input-field" placeholder="Your Phone *" id="job_category" name="category" required="" />
+                                                        
                                                         <div class="focus"></div>
                                                     </div>
                                                     <div class="empty-sm-20 empty-xs-20"></div>
@@ -653,7 +676,7 @@
                                                             <input
                                                                 type="file"
                                                                 id="file-upload"
-                                                                name="cvFile"
+                                                                name="resume"
                                                                 accept=".doc,.docx,.pdf,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                                                             />
                                                         </label>
@@ -695,50 +718,103 @@
     @endif --}}
     <script src="{{ asset('js/jbvalidator.js') }}"></script>
     <script>
-        $("#apply-now").on("click", function () {
+        $(".apply_user").on("click", function () {
+
+            let job_id = $(this).attr("data-jobId");
+            let job_category = $(this).attr("data-jobCategory");
+
+            $("#applied_job_id").val(job_id);
+            $("#job_category").val(job_category);
+
             $("#jobApplyModal").modal("show");
+
+            $(".apply_clicked").on("click", function () {
+
+                $.ajax({
+                /* the route pointing to the post function */
+                    url: '/job-applied',
+                    type: 'POST',
+                    /* send the csrf-token and the input to the controller */
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        job_id: job_id
+                    },
+                    dataType: 'JSON',
+                    /* remind that 'data' is the response of the AjaxController */
+                    success: function (data) { 
+                        console.log('yes it workekd');
+                        // $(".writeinfo").append(data.msg); 
+                    }
+                });
+
+            });
         });
+
         $(".close-modal").on("click", function () {
             $("#jobModal").modal("hide");
             $("#jobApplyModal").modal("hide");
         });
-        $("#store-manager").on("click", function () {
-            $("#content").html(`<h5 style='font-weight: 700; font-size: 1.4rem; color: #636363;'>Here is what you need:</h5>
-      <p style="font-size: 1.5rem; color: #636363; font-weight: 400; line-height: 1.55;"><br /></p>
-      <ul id="job-list" type="disc">
-        <li>Operationally focused on implementing brand standards and policies</li>
-        <li>Consistently deliver industry-leading guest service</li>
-        <li>Experience with previous openings would be ideal but is not essential</li>
-        <li>Ensure store operational requirements by following brand standards, scheduling and assigning
-          employees</li>
-        <li>Comply with all requirements of Food Safety and Health and Hygiene standards</li>
-        <li>Maintain awareness of market trends in the hospitality industry, understanding forthcoming
-          guest initiatives and monitoring what local
-          competitors are doing</li>
-        <li>Understand P&amp;L, budgets and managing payroll</li>
-        <li>Manage stock levels and availability</li>
-        <li>Manage all controllable costs to keep operations profitable</li>
-        <li>Understand weekly sales information</li>
-        <li>Maintain operations by coordinating and enforcing personnel policies and procedures in line
-          with GDK brand standards.</li>
-        <li>Provide excellent management guidance to your team including training, development and
-          leadership</li>
-        <li>Maintain a secure, safe and healthy environment for your team and your guests</li>
-        <li>Maintain store team member loyalty by coaching, developing and disciplining employees were
-          necessary</li>
-        <li>Provide training to improve all team members and utilise cross-training methods to maintain
-          productivity and create an environment where your
-          team can grow their knowledge</li>
-        <li>Update colleagues on business performance, new initiatives and any issues that will enhance
-          performance</li>
-        <li>The guest first in everything we do</li>
-        <li>Understand your guest and respond to guest complaints and comments</li>
-        <li>Identify current and future guest requirements by establishing rapport with potential and
-          actual guests and training others in a position to
-          understand service requirements</li>
-        <li>The guest first in everything we do</li>
-      </ul>`);
-            $("#jobModal").modal("show");
+
+        $(".job_detail").on("click", function () {
+
+            let job_id = $(this).attr("data-detailId")
+
+            $.ajax({
+                /* the route pointing to the post function */
+                url: '/get-job-detail',
+                type: 'POST',
+                /* send the csrf-token and the input to the controller */
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    job_id: job_id
+                },
+                dataType: 'JSON',
+                /* remind that 'data' is the response of the AjaxController */
+                success: function (data) { 
+                    // console.log('yes it workekd');
+                    // $(".writeinfo").append(data.msg); 
+                    $("#content").html(data.description);
+                    $("#jobModal").modal("show");
+                }
+            });
+
+    //         $("#content").html(`<h5 style='font-weight: 700; font-size: 1.4rem; color: #636363;'>Here is what you need:</h5>
+    //   <p style="font-size: 1.5rem; color: #636363; font-weight: 400; line-height: 1.55;"><br /></p>
+    //   <ul id="job-list" type="disc">
+    //     <li>Operationally focused on implementing brand standards and policies</li>
+    //     <li>Consistently deliver industry-leading guest service</li>
+    //     <li>Experience with previous openings would be ideal but is not essential</li>
+    //     <li>Ensure store operational requirements by following brand standards, scheduling and assigning
+    //       employees</li>
+    //     <li>Comply with all requirements of Food Safety and Health and Hygiene standards</li>
+    //     <li>Maintain awareness of market trends in the hospitality industry, understanding forthcoming
+    //       guest initiatives and monitoring what local
+    //       competitors are doing</li>
+    //     <li>Understand P&amp;L, budgets and managing payroll</li>
+    //     <li>Manage stock levels and availability</li>
+    //     <li>Manage all controllable costs to keep operations profitable</li>
+    //     <li>Understand weekly sales information</li>
+    //     <li>Maintain operations by coordinating and enforcing personnel policies and procedures in line
+    //       with GDK brand standards.</li>
+    //     <li>Provide excellent management guidance to your team including training, development and
+    //       leadership</li>
+    //     <li>Maintain a secure, safe and healthy environment for your team and your guests</li>
+    //     <li>Maintain store team member loyalty by coaching, developing and disciplining employees were
+    //       necessary</li>
+    //     <li>Provide training to improve all team members and utilise cross-training methods to maintain
+    //       productivity and create an environment where your
+    //       team can grow their knowledge</li>
+    //     <li>Update colleagues on business performance, new initiatives and any issues that will enhance
+    //       performance</li>
+    //     <li>The guest first in everything we do</li>
+    //     <li>Understand your guest and respond to guest complaints and comments</li>
+    //     <li>Identify current and future guest requirements by establishing rapport with potential and
+    //       actual guests and training others in a position to
+    //       understand service requirements</li>
+    //     <li>The guest first in everything we do</li>
+    //   </ul>`);
+
+            // $("#jobModal").modal("show");
         });
         $("#driver").on("click", function () {
             $("#content").html(`<h5 style='font-weight: 700; font-size: 1.4rem; color: #636363;'>Here is what you need:</h5>
@@ -855,7 +931,7 @@
                     if ($(el).is("[name=re-email]") && $(el).val() !== $("input[name=email]").val()) {
                         return "Please enter the same email.";
                     }
-                    if ($(el).is("[name=cvFile]") && isImageRequired) {
+                    if ($(el).is("[name=resume]") && isImageRequired) {
                         if ($("#file-upload").val() == "") {
                             $("#image-error").removeClass("d-none");
                         } else {

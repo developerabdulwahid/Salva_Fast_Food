@@ -12,6 +12,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DineInController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\MenuDocumentController;
 use App\Http\Controllers\SliderController;
@@ -39,6 +40,8 @@ Route::post('/franchise', [FranchiseController::class, 'send_mail']);
 // ->name('franchise')
 Route::get('/career', [CareerController::class, 'index'])->name('career');
 Route::post('/career', [CareerController::class, 'send_mail']);
+Route::post('/get-job-detail', [CareerController::class, 'jobDetail']);
+Route::post('/job-applied', [CareerController::class, 'jobApplied']);
 // ->name('career')
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
@@ -72,6 +75,8 @@ Route::get('/create-job',[JobsController::class,'create'])->name('new-job');
 Route::post('/create-job',[JobsController::class,'store'])->name('new-job');
 Route::get('/job-detail/{id}',[JobsController::class,'detail'])->name('job-detail');
 Route::get('/delete-job/{id}',[JobsController::class,'destroy'])->name('delete-job');
+
+Route::resource('applicants', JobApplicationController::class)->only(['index', 'show', 'destroy']);
 
 Route::get('dine_in/{id}', [DineInController::class, 'edit'])->name('dineIn.edit');
 Route::post('dine_in/update/{id}', [DineInController::class, 'update'])->name('dineIn.update');

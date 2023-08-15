@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Session;
 use App\Models\Job;
+use App\Models\JobApplication;
 
 class CareerController extends Controller
 {
@@ -15,21 +16,27 @@ class CareerController extends Controller
     public function index() 
     {
         $jobs = Job::get();
-        return view('career',compact('jobs'));
+
+        return view('career', compact('jobs'));
     }
 
     public function send_mail(Request $request) {
         $fileName = '';
         $data = $request->all();
+        
         $captcha = $data['g-recaptcha-response'];
         $captcha_secret = '6LdCkQIcAAAAAL43Gbc2KmtvnG-f7rN97dkafL-I';
         $verifyCaptcha = ReCaptchaAPI::confirm($captcha_secret, $captcha);
         if($verifyCaptcha) {
-            if ($request->hasFile('cvFile')) {
-                $file =  $request->file('cvFile');
+            if ($request->hasFile('resume')) {
+                $file =  $request->file('resume');
                 $fileName = time().'_'.$file->getClientOriginalName();    
                 $file->move(public_path('/cvs/'), $fileName);
             }
+
+            $data['resume'] = $fileName;
+            $application = JobApplication::create($data);
+            
             Mail::send('career_email', array(
                 'name' => $data['fullname'],
                 'email' => $data['re-email'],
@@ -45,6 +52,7 @@ class CareerController extends Controller
                     $message->attach(public_path('cvs/'.$fileName));
                 }
             });
+
             Mail::send('customer_job_email', array(
                 'name' => $data['fullname'],
                 'position' => $data['position'],
@@ -56,12 +64,26 @@ class CareerController extends Controller
             });
         }
 
-            if(is_file(public_path('/cvs/'.$fileName))){
-                unlink(public_path('/cvs/'.$fileName));
-            }
+        if(is_file(public_path('/cvs/'.$fileName))){
+            unlink(public_path('/cvs/'.$fileName));
+        }
         // }
        
         Session::flash("success", "Your Application has been submitted successfully.");
         return redirect()->route('career');
+    }
+
+    public function jobDetail(Request $request)
+    {
+        $job = Job::findOrFail($request->job_id);
+
+        return response()->json($job);
+    }
+
+    public function jobApplied(Request $request)
+    {
+        $job = Job::findOrFail($request->job_id);
+
+        return response()->json($job);
     }
 }

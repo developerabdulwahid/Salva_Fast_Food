@@ -10,7 +10,8 @@ class Job extends Model
     use HasFactory;
     protected $fillable = [];
 
-    public function applications(){
+    public function applications()
+    {
         return $this->hasMany(JobApplication::class);
     }
 
