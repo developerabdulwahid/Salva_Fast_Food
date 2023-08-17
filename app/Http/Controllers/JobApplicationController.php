@@ -15,7 +15,7 @@ class JobApplicationController extends Controller
      */
     public function index()
     {
-        $applicants = JobApplication::all();
+        $applicants = JobApplication::Latest()->get();;
 
         return view('dashboard.applicants.index', ['applicants' => $applicants]);
     }

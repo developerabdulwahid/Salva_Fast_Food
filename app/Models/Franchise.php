@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Scopes\LatestScope;
 
 class Franchise extends Model
 {
@@ -30,4 +31,11 @@ class Franchise extends Model
         'created_at',
         'updated_at'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new LatestScope);
+    }
 }

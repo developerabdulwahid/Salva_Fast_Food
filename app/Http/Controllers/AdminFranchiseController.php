@@ -15,7 +15,7 @@ class AdminFranchiseController extends Controller
      */
     public function index()
     {
-        $franchises = Franchise::all();
+        $franchises = Franchise::Latest()->get();
 
         return view('dashboard.franchises.index', ['franchises' => $franchises]);
     }

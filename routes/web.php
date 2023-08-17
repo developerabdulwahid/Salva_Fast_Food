@@ -14,6 +14,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DineInController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobsController;
+use App\Http\Controllers\LogoController;
 use App\Http\Controllers\MenuDocumentController;
 use App\Http\Controllers\SliderController;
 
@@ -79,6 +80,8 @@ Route::get('/delete-job/{id}',[JobsController::class,'destroy'])->name('delete-j
 Route::get('job-applicants/{id}',[JobApplicationController::class,'jobApplicants'])->name('job.applicants');
 Route::resource('applicants', JobApplicationController::class)->only(['index', 'show', 'destroy']);
 
+Route::get('logo/{id}', [LogoController::class, 'edit'])->name('logo.edit');
+Route::post('log/update/{id}', [LogoController::class, 'update'])->name('logo.update');
 Route::get('dine_in/{id}', [DineInController::class, 'edit'])->name('dineIn.edit');
 Route::post('dine_in/update/{id}', [DineInController::class, 'update'])->name('dineIn.update');
 Route::resource('sliders', SliderController::class);

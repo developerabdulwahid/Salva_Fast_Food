@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateDocumentRequest;
 use App\Models\MenuDocument;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 
 class MenuDocumentController extends Controller
 {
@@ -42,12 +44,20 @@ class MenuDocumentController extends Controller
         $validated = $request->validated();
         $slider = MenuDocument::create($validated);
 
+        // if ($request->hasFile('file')) {
+            
+        //     $path = $request->file('file')->store('documents');
+            
+        //     $slider->file = $path;
+        //     $slider->save();
+        // }
+
+        $slider->id = $random =  rand(1, 1000);
+
         if ($request->hasFile('file')) {
-            
-            $path = $request->file('file')->store('documents');
-            
-            $slider->file = $path;
-            $slider->save();
+            $fileName = $random.'.'.$request->file->extension();  
+            $request->file->move(public_path('menu_documents'), $fileName);
+            $slider->file = $fileName;      
         }
 
         session()->flash('status', 'New Slider was created!');
@@ -89,25 +99,28 @@ class MenuDocumentController extends Controller
     {
         $document = MenuDocument::find($id);
 
-        $validated = $request->validated();
-        $document->fill($validated);
-        $document->save();
+        if($request->file){
 
-        if ($request->hasFile('file')) {
-            
-            $path = $request->file('file')->store('documents');
-            
-            if ($document->file) {
-                Storage::delete($document->file);
-                $document->file = $path;
-                $document->save();
-            } else {
-                $document->file = $path;
-                $document->save();
+            $document_path = public_path()."/menu_documents/".$document->file;  // Value is not URL but directory file path
+
+            if(File::exists($document_path)) {
+
+                File::delete($document_path);
             }
+
+            $originalFile = $request->file('file');
+
+            $originalFile->move(public_path().'/menu_documents/', $document_file = time().'.'.$originalFile->getClientOriginalExtension());
+
+            $document->file = $document_file;
+
         }
 
-        session()->flash('success', 'New Slider was Updated!');
+        $document->title = $request->title;
+        $document->content = $request->content;
+        $document->save();
+
+        session()->flash('success', 'New document was Updated!');
 
         return redirect()->route('documents.index');
     }

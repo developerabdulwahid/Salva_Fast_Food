@@ -19,7 +19,7 @@
     <!--[if !mso]><!-->
 	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i" rel="stylesheet" />
     <!--<![endif]-->
-	<title>CV Received</title>
+	<title>CV <Received></Received></title>
 	<!--[if gte mso 9]>
 	<style type="text/css" media="all">
 		sup { font-size: 100% !important; }
@@ -127,7 +127,7 @@
 												<td style="padding-top: 10px; border-radius: 5px 5px 0px 0px;" bgcolor="#1b1b1b"></td>
 											</tr>
 											<tr>
-												<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"><img src="https://www.salvafastfood.com/foods/Doner_Kebab.jpeg" width="650" height="366" border="0" alt="" /></td>
+												<td class="fluid-img" style="font-size:0pt; line-height:0pt; text-align:left;"></td>
 											</tr>
 											<tr>
 												<td class="p30-15" bgcolor="#fd6464" style="padding: 45px 40px;">
@@ -136,10 +136,7 @@
 															<td class="h2 white center pb15" style="font-family:'Playfair Display', Georgia, serif; font-size:30px; line-height:46px; font-weight:bold; color:#ffffff; text-align:center; padding-bottom:15px;"><multiline>-&nbsp;Salva Fast Food&nbsp;-</multiline></td>
 														</tr>
 														<tr>
-															<td class="text center white" style="font-family:Arial, sans-serif; font-size:14px; line-height:26px; text-align:center; color:#ffffff;"><multiline><strong><?php echo e($name); ?></strong> have applied on <?php echo e($position); ?> <span class="m-hide"><br /></span>See details below</multiline></td>
-														</tr>
-														<tr>
-															<td class="text center white" style="font-family:Arial, sans-serif; font-size:14px; line-height:26px; text-align:center; color:#ffffff;"><multiline><strong>Message</strong><?php echo e($content ?? ''); ?></multiline></td>
+															<td class="text center white" style="font-family:Arial, sans-serif; font-size:14px; line-height:26px; text-align:center; color:#ffffff;"><multiline>You have new enquiry <span class="m-hide"><br /></span>See details below</multiline></td>
 														</tr>
 													</table>
 												</td>
@@ -155,7 +152,23 @@
 															<td class="h2 pb15" style="color:#000000; font-family:'Playfair Display', Georgia, serif; font-size:30px; line-height:46px; text-align:left; font-weight:bold; padding-bottom:15px;"><multiline><?php echo e($name); ?></multiline></td>
 														</tr>
 														<tr>
-															<td class="text pb30" style="color:#999999; font-family:Arial, sans-serif; font-size:14px; line-height:26px; text-align:left; padding-bottom:30px;"><multiline><strong>Email: </strong> <?php echo e($email); ?> <br> <strong>Store: </strong> <?php echo e($store); ?> <br> <strong>Position: </strong> <?php echo e($position); ?> <br> <strong>Time: </strong> <?php echo e($time); ?> </multiline></td>
+															<td class="text pb30" style="color:#999999; font-family:Arial, sans-serif; font-size:14px; line-height:26px; text-align:left; padding-bottom:30px;"><multiline>
+                                                                <strong>Email: </strong> <?php echo e($email); ?> <br>
+                                                                <strong>Phone: </strong> <?php echo e($phone); ?> <br>
+                                                                <strong>Country: </strong> <?php echo e($country); ?> <br>
+                                                                <strong>Hear about us: </strong> <?php echo e($hear_about_us); ?> <br>
+                                                                <strong>Address: </strong> <?php echo e($address); ?> <br>
+                                                                <strong>City: </strong> <?php echo e($city); ?> <br>
+                                                                <strong>Postcode: </strong> <?php echo e($postcode); ?> <br>
+                                                                <strong>Nationality: </strong> <?php echo e($nationality); ?> <br>
+                                                                <strong>Ever Run: </strong> <?php echo e($everRunOptions); ?> <br>
+                                                                <strong>Food Experience: </strong> <?php echo e($foodExperience); ?> <br>
+                                                                <strong>Start In: </strong> <?php echo e($startOptions); ?> <br>
+                                                                <strong>Level Of Investment: </strong> <?php echo e($levelOfInvestment); ?> <br>
+                                                                <strong>Type Of Development Interest: </strong> <?php echo e($typeOfDevelopmentInterest); ?> <br>
+                                                                <strong>Phone With CC: </strong> <?php echo e($phoneWithCc); ?> <br>
+                                                                <p><strong>Message:</strong> <?php echo e($content); ?> </p>
+                                                            </multiline></td>
 														</tr>
 													</table>
 												</td>
@@ -172,4 +185,4 @@
 		</tr>
 	</table>
 </body>
-</html><?php /**PATH D:\work\works OutSource\Salva_Fast_Food\resources\views/career_email.blade.php ENDPATH**/ ?>
+</html><?php /**PATH D:\work\works OutSource\Salva_Fast_Food\resources\views/franchise_email.blade.php ENDPATH**/ ?>

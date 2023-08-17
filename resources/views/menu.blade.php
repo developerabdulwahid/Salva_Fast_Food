@@ -43,7 +43,7 @@
     </div>
     <div class="content-wrap">
       <div class="content-text text-center" style="margin: 5rem;">
-        <a href="{{ asset(Storage::url($dine->file)) }}" target="_blank" class="menu-btn" style="padding: 15px 25px;
+        <a href="{{ asset('dine_documents').'/'.$dine->file }}" target="_blank" class="menu-btn" style="padding: 15px 25px;
     display: inline-block;
     background-color: #f08113;
     color: #fff;
@@ -58,7 +58,7 @@
         
         <p style="max-width: 85rem; margin: auto; font-size: 1.6rem; text-align: left; line-height: 3.2rem;">{{ $document->content }}.</p>
         
-        <p style="max-width: 85rem; margin: auto; font-size: 1.6rem; text-align: left; line-height: 3.2rem;"> <a style="text-decoration: underline; color: #f08113;" href="{{ asset(Storage::url($document->file)) }}">{{$document->title}}</a></p>
+        <p style="max-width: 85rem; margin: auto; font-size: 1.6rem; text-align: left; line-height: 3.2rem;"> <a style="text-decoration: underline; color: #f08113;" href="{{ asset('menu_documents').'/'.$document->file }}">{{$document->title}}</a></p>
         
 
       </div>
