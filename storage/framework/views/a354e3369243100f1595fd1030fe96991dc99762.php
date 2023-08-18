@@ -39,7 +39,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">File</label>
                                 
-                                <a class="ml-3" href="<?php echo e(asset(Storage::url($document->file))); ?>"><?php echo e($document->title); ?></a>
+                                <a class="ml-3" href="<?php echo e(asset('menu_documents/').'/'.$document->file); ?>"><?php echo e($document->title); ?></a>
                                 
                                 <div class="col-sm-12 col-md-7">
                                     <div id="image-preview" class="image-preview">

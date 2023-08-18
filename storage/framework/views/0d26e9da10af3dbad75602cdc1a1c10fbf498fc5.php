@@ -512,7 +512,7 @@
                     ?>
                     <?php $__empty_1 = true; $__currentLoopData = $sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $slider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <div class="carousel-item  <?php if($counter == 1): ?> active <?php endif; ?>">
-                        <img src="<?php echo e(asset(Storage::url($slider->image))); ?>" id="sliderimg" class="carousel-image d-block w-100" alt="Bites & Smile">
+                        <img src="<?php echo e(asset('slider_images').'/'.$slider->image); ?>" id="sliderimg" class="carousel-image d-block w-100" alt="Bites & Smile">
                         <div class="carousel-caption">
                             <img src="<?php echo e(asset('images/slogan.png' )); ?>"/>
                         </div>

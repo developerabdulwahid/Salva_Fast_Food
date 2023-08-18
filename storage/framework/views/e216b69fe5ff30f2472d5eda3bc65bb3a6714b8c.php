@@ -24,23 +24,14 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content</label>
-                                <div class="col-sm-12 col-md-7">
-                                    <textarea class="form-control" name="description"> <?php echo e($slider->description); ?> </textarea>
-                                <?php if($errors->has('content')): ?>
-                                    <span class="text-danger"><?php echo e($errors->first('content')); ?></span>
-                                <?php endif; ?>
-                                    
-                                </div>
-                            </div>
+                            
 
                             
 
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
                                 
-                                <img src="<?php echo e(asset(Storage::url($slider->image))); ?>" alt="" height="128px" width="128px">
+                                <img src="<?php echo e(asset('slider_images').'/'.$slider->image); ?>" alt="" height="128px" width="128px">
                                 
                                 <div class="col-sm-12 col-md-7">
                                     <div id="image-preview" class="image-preview">

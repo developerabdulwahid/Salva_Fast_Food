@@ -23,16 +23,17 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row mb-4">
+                            {{-- <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <textarea class="form-control" name="description"></textarea>
+                                    <textarea class="form-control" name="content"></textarea>
                                 @if ($errors->has('content'))
                                     <span class="text-danger">{{ $errors->first('content') }}</span>
                                 @endif
                                     
                                 </div>
-                            </div>
+                            </div> --}}
+
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Image</label>
                                 <div class="col-sm-12 col-md-7">

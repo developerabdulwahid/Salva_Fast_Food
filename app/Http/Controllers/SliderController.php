@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreSliderRequest;
+use App\Http\Requests\UpdateSliderRequest;
 use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class SliderController extends Controller
 {
@@ -39,16 +41,21 @@ class SliderController extends Controller
      */
     public function store(StoreSliderRequest $request)
     {
-        $validated = $request->validated();
-        $slider = Slider::create($validated);
+        $slider = new Slider();
 
-        if ($request->hasFile('image')) {
-            
-            $path = $request->file('image')->store('sliders');
-            
-            $slider->image = $path;
-            $slider->save();
+        if($request->image){
+
+            $originalFile = $request->file('image');
+
+            $originalFile->move(public_path().'/slider_images/', $slider_file = time().'.'.$originalFile->getClientOriginalExtension());
+
+            $slider->image = $slider_file;
+
         }
+
+        $slider->title = $request->title;
+        $slider->content = $request->content;
+        $slider->save();
 
         session()->flash('status', 'New Slider was created!');
 
@@ -84,25 +91,30 @@ class SliderController extends Controller
      * @param  \App\Models\Slider  $slider
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreSliderRequest $request, Slider $slider)
+    public function update(UpdateSliderRequest $request, Slider $slider)
     {
-        $validated = $request->validated();
-        $slider->fill($validated);
+        if($request->file){
+            
+            $document_path = public_path()."/slider_images/".$slider->file;  // Value is not URL but directory file path
+
+            if(File::exists($document_path)) {
+
+                File::delete($document_path);
+            }
+
+            $originalFile = $request->file('file');
+
+            $originalFile->move(public_path().'/slider_images/', $slider_file = time().'.'.$originalFile->getClientOriginalExtension());
+
+            $slider->file = $slider_file;
+
+        }
+
+        $slider->title = $request->title;
+        $slider->content = $request->content;
         $slider->save();
 
-        if ($request->hasFile('image')) {
-            
-            $path = $request->file('image')->store('sliders');
-            
-            if ($slider->image) {
-                Storage::delete($slider->image);
-                $slider->image = $path;
-                $slider->save();
-            } else {
-                $slider->image = $path;
-                $slider->save();
-            }
-        }
+
 
         session()->flash('success', 'New Slider was Updated!');
 
@@ -118,7 +130,14 @@ class SliderController extends Controller
      */
     public function destroy(Slider $slider)
     {
-        Storage::delete($slider->image);
+        // Storage::delete($slider->image);
+        $image_path = public_path()."/slider_images/".$slider->image;  // Value is not URL but directory file path
+
+        if(File::exists($image_path)) {
+
+            File::delete($image_path);
+        }
+
         $slider->delete();
 
         session()->flash('success', 'New Slider was Deleted!');

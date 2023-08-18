@@ -9,7 +9,7 @@ header nav .nav-menu {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <nav>
    
-    <a href="/" class="nav-logo"><img src="{{ asset('images/logo.png') }}" alt=""></a>
+    <a href="/" class="nav-logo"><img src=" {{ ($logo->file) ? asset('logo_images/').'/'.$logo->file : asset('images/logo.png') }}" alt=""></a>
     
     <ul class="nav-menu">
 

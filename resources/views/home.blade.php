@@ -507,7 +507,7 @@
                     @endphp
                     @forelse ($sliders as $slider)
                     <div class="carousel-item  @if($counter == 1) active @endif">
-                        <img src="{{asset(Storage::url($slider->image))}}" id="sliderimg" class="carousel-image d-block w-100" alt="Bites & Smile">
+                        <img src="{{ asset('slider_images').'/'.$slider->image }}" id="sliderimg" class="carousel-image d-block w-100" alt="Bites & Smile">
                         <div class="carousel-caption">
                             <img src="{{asset('images/slogan.png' ) }}"/>
                         </div>

@@ -15,8 +15,8 @@ class AdminContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::all();
-
+        $contacts = Contact::Latest()->get();
+        
         return view('dashboard.contacts.index', ['contacts' => $contacts]);
     }
 

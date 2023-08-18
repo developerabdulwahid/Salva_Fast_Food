@@ -14,7 +14,7 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = Job::with('applications')->get();
+        $jobs = Job::Latest()->with('applications')->get();
         return view('dashboard.jobs',compact('jobs'));
     }
 

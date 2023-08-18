@@ -191,7 +191,7 @@
                                 
                                 <div class="col-xs-12 common-display compliment complaint d-none">
                                     <div class="input-field-wrap">
-                                        <select name="restaurant"
+                                        <select name="resturant"
                                             class="input-field common-required compliment-required complaint-required">
                                             <option value="">Select Rasturant Name *</option>
                                             <option value="Burnley">Burnley</option>

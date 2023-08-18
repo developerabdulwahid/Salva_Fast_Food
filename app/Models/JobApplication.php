@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Scopes\LatestScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -27,5 +28,12 @@ class JobApplication extends Model
     public function job()
     {
         return $this->belongsTo(Job::class);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new LatestScope);
     }
 }

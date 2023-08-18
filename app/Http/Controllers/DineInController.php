@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDocumentRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class DineInController extends Controller
 {
@@ -20,24 +20,28 @@ class DineInController extends Controller
     {
         $document = DB::table('dine_in_documents')->where('id', $id)->first();
 
-        if ($request->hasFile('file')) {
-            
-            $path = $request->file('file')->store('documents');
-            
-            if ($document->file) {
-                Storage::delete($document->file);
+        if($request->file){
 
-                $file = DB::table('dine_in_documents')->where('id', $id)->update([
-                    'title' => $request->title,
-                    'file' => $path
-                ]);
-            } else {
-                $file = DB::table('dine_in_documents')->where('id', $id)->update([
-                    'title' => $request->title,
-                    'file' => $path
-                ]);
+            $document_path = public_path()."/dine_documents/".$document->file;  // Value is not URL but directory file path
+
+            if(File::exists($document_path)) {
+
+                File::delete($document_path);
             }
-        }
+
+            $originalFile = $request->file('file');
+
+            $originalFile->move(public_path().'/dine_documents/', $document_file = time().'.'.$originalFile->getClientOriginalExtension());
+
+            $file = DB::table('dine_in_documents')->where('id', $id)->update([
+                'title' => $request->title,
+                'file' => $document_file
+            ]);
+        } 
+
+        $file = DB::table('dine_in_documents')->where('id', $id)->update([
+            'title' => $request->title
+        ]);
 
         session()->flash('success', 'Document was Updated!');
 
